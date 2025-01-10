@@ -24,7 +24,7 @@ https://forgenet.gitbook.io/fluent-documentation/documentation/guide/fluent
 ```
 ## 👑 Example
 ```
-local Fluent = loadstring(game:HttpGet("https://github.com/CodeE4X-dev/Library/releases/latest/download/main.lua"))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/CodeE4X-dev/Library/refs/heads/main/FluentRemake.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
@@ -281,3 +281,4 @@ Fluent:Notify({
     Duration = 8
 })
 SaveManager:LoadAutoloadConfig()
+```
