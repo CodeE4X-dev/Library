@@ -1,0 +1,2 @@
+TypeWritter = BlackDig
+Jungle = RedBlood
