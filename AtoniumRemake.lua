@@ -1243,6 +1243,68 @@ function Library:new()
 
             return Textbox;
         end
+
+
+        function Module:create_button()
+            local section = self.section == 'left' and left_section or right_section
+        
+            local button = Instance.new("TextButton")
+            button.Name = "Button"
+            button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+            button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            button.BorderSizePixel = 0
+            button.Size = UDim2.new(0, 215, 0, 37)
+            button.AutoButtonColor = false
+            button.Font = Enum.Font.SourceSans
+            button.Text = ""
+            button.TextColor3 = Color3.fromRGB(0, 0, 0)
+            button.TextSize = 14.000
+            button.Parent = section
+        
+            local UICorner = Instance.new("UICorner")
+            UICorner.CornerRadius = UDim.new(0, 10)
+            UICorner.Parent = button
+        
+            local Icon = Instance.new("ImageLabel")
+            Icon.Name = "Icon"
+            Icon.Parent = button
+            Icon.AnchorPoint = Vector2.new(0.5, 0.5)
+            Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Icon.BackgroundTransparency = 1.000
+            Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Icon.BorderSizePixel = 0
+            Icon.Position = UDim2.new(0.130999997, 0, 0.5, 0)
+            Icon.Size = UDim2.new(0, 17, 0, 17)
+            Icon.ZIndex = 3
+            Icon.Image = "rbxassetid://10709797382" -- Ikon yang Anda tentukan
+            Icon.ImageTransparency = 0.300
+        
+            local TextLabel = Instance.new("TextLabel")
+            TextLabel.Parent = button
+            TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+            TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.BackgroundTransparency = 1.000
+            TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            TextLabel.BorderSizePixel = 0
+            TextLabel.Position = UDim2.new(0.58965224, 0, 0.5, 0)
+            TextLabel.Size = UDim2.new(0, 124, 0, 15)
+            TextLabel.ZIndex = 3
+            TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+            TextLabel.Text = self.name
+            TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.TextScaled = true
+            TextLabel.TextSize = 14.000
+            TextLabel.TextWrapped = true
+            TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+        
+            button.MouseButton1Click:Connect(function()
+                self.callback()
+            end)
+        
+            return button
+        end
+
+        
 		function Module:create_keybind()
 			local section = self.section == 'left' and left_section or right_section
 			local keybind = Instance.new("TextButton")
