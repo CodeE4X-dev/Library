@@ -1,4 +1,5 @@
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/CodeE4X-dev/Library/refs/heads/main/StarX.lua"))()
+print('upd: V0.0.1')
 local UILibrary = {}
 UILibrary.__index = UILibrary
 
@@ -284,14 +285,26 @@ function UILibrary:Window(options)
                 end
             end)
 
-            game:GetService("UserInputService").InputChanged:Connect(function(input)
-                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-                    local xOffset = math.clamp(input.Position.X - sliderBar.AbsolutePosition.X, 0, sliderBar.AbsoluteSize.X)
-                    local value = math.floor(((xOffset / sliderBar.AbsoluteSize.X) * (options.max - options.min)) + options.min
-                    sliderButton.Position = UDim2.new(0, xOffset - 5, 0, 0)
-                    options.callback(value)
-                end
-            end)
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        -- Hitung posisi relatif mouse terhadap sliderBar
+        local mouseX = input.Position.X
+        local sliderStartX = sliderBar.AbsolutePosition.X
+        local sliderEndX = sliderStartX + sliderBar.AbsoluteSize.X
+
+        -- Pastikan mouse berada dalam batas sliderBar
+        local xOffset = math.clamp(mouseX - sliderStartX, 0, sliderBar.AbsoluteSize.X)
+
+        -- Hitung nilai berdasarkan posisi mouse
+        local value = math.floor(((xOffset / sliderBar.AbsoluteSize.X) * (options.max - options.min)) + options.min)
+
+        -- Update posisi sliderButton
+        sliderButton.Position = UDim2.new(0, xOffset - (sliderButton.AbsoluteSize.X / 2), 0.5, 0)
+
+        -- Panggil callback dengan nilai yang dihitung
+        options.callback(value)
+    end
+end)
 
             return sliderFrame
         end
