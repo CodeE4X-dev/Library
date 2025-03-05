@@ -1301,6 +1301,62 @@ function Module:create_button()
 end
 
 
+
+function Module:create_paragraph()
+    local section = self.section == 'left' and left_section or right_section
+
+    local paragraph = Instance.new("Frame")
+    paragraph.Name = "Paragraph"
+    paragraph.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+    paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    paragraph.BorderSizePixel = 0
+    paragraph.Size = UDim2.new(0, 215, 0, 60) -- Sesuaikan tinggi sesuai kebutuhan
+    paragraph.Parent = section
+
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 10)
+    UICorner.Parent = paragraph
+
+    local title = Instance.new("TextLabel")
+    title.Name = "Title"
+    title.AnchorPoint = Vector2.new(0.5, 0)
+    title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    title.BackgroundTransparency = 1.000
+    title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    title.BorderSizePixel = 0
+    title.Position = UDim2.new(0.5, 0, 0.05, 0) -- Posisi di atas
+    title.Size = UDim2.new(0, 200, 0, 15)
+    title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+    title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    title.TextScaled = true
+    title.TextSize = 14.000
+    title.TextWrapped = true
+    title.TextXAlignment = Enum.TextXAlignment.Left
+    title.Text = self.title -- Judul dari parameter
+    title.Parent = paragraph
+
+    local description = Instance.new("TextLabel")
+    description.Name = "Description"
+    description.AnchorPoint = Vector2.new(0.5, 0)
+    description.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    description.BackgroundTransparency = 1.000
+    description.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    description.BorderSizePixel = 0
+    description.Position = UDim2.new(0.5, 0, 0.35, 0) -- Posisi di bawah judul
+    description.Size = UDim2.new(0, 200, 0, 30) -- Sesuaikan tinggi sesuai kebutuhan
+    description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
+    description.TextColor3 = Color3.fromRGB(200, 200, 200) -- Warna teks lebih redup
+    description.TextScaled = true
+    description.TextSize = 12.000
+    description.TextWrapped = true
+    description.TextXAlignment = Enum.TextXAlignment.Left
+    description.Text = self.description -- Deskripsi dari parameter
+    description.Parent = paragraph
+
+    return paragraph
+end
+
+
         
 		function Module:create_keybind()
 			local section = self.section == 'left' and left_section or right_section
@@ -1402,3 +1458,4 @@ end
 end
 
 return Library
+
