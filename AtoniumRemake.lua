@@ -4,7 +4,7 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-print('Library: V 0.0.2')
+print('Library: V 0.0.5')
 local Mouse = LocalPlayer:GetMouse();
 
 local Library = {
@@ -1325,7 +1325,7 @@ function Module:create_paragraph()
     title.BackgroundTransparency = 1.000
     title.BorderSizePixel = 0
     title.Position = UDim2.new(0.5, 0, 0.05, 0) -- Posisi di atas
-    title.Size = UDim2.new(0, 200, 0, 20) -- Ukuran judul
+    title.Size = UDim2.new(0, 215, 0, 37) -- Ukuran judul
     title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Bold) -- Font bold
     title.TextColor3 = Color3.fromRGB(255, 255, 255) -- Warna putih
     title.TextScaled = true
@@ -1343,7 +1343,7 @@ function Module:create_paragraph()
     description.BackgroundTransparency = 1.000
     description.BorderSizePixel = 0
     description.Position = UDim2.new(0.5, 0, 0.45, 0) -- Posisi di bawah judul
-    description.Size = UDim2.new(0, 200, 0, 30) -- Ukuran deskripsi
+    description.Size = UDim2.new(0, 215, 0, 37) -- Ukuran deskripsi
     description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular) -- Font regular
     description.TextColor3 = Color3.fromRGB(200, 200, 200) -- Warna abu-abu
     description.TextScaled = true
