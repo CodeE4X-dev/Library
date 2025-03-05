@@ -4,7 +4,7 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-print('Library: V 0.0.1')
+print('Library: V 0.0.2')
 local Mouse = LocalPlayer:GetMouse();
 
 local Library = {
@@ -1329,7 +1329,7 @@ function Module:create_paragraph()
     title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Bold) -- Font bold
     title.TextColor3 = Color3.fromRGB(255, 255, 255) -- Warna putih
     title.TextScaled = true
-    title.TextSize = 14.000
+    title.TextSize = 8.000
     title.TextWrapped = true
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Text = self.title -- Judul dari parameter
@@ -1347,7 +1347,7 @@ function Module:create_paragraph()
     description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular) -- Font regular
     description.TextColor3 = Color3.fromRGB(200, 200, 200) -- Warna abu-abu
     description.TextScaled = true
-    description.TextSize = 12.000
+    description.TextSize = 8.000
     description.TextWrapped = true
     description.TextXAlignment = Enum.TextXAlignment.Left
     description.Text = self.description -- Deskripsi dari parameter
