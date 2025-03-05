@@ -1301,59 +1301,61 @@ function Module:create_button()
 end
 
 
-
 function Module:create_paragraph()
     local section = self.section == 'left' and left_section or right_section
 
-local paragraph = Instance.new("Frame")
-paragraph.Name = "Paragraph"
-paragraph.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
-paragraph.BorderSizePixel = 0
-paragraph.Size = UDim2.new(0, 215, 0, 70) -- Tinggi lebih besar untuk menyesuaikan teks
-paragraph.Parent = section
+    -- Membuat frame utama untuk paragraf
+    local paragraph = Instance.new("Frame")
+    paragraph.Name = "Paragraph"
+    paragraph.BackgroundColor3 = Color3.fromRGB(27, 28, 33) -- Warna background
+    paragraph.BorderSizePixel = 0
+    paragraph.Size = UDim2.new(0, 215, 0, 60) -- Ukuran frame
+    paragraph.Parent = section
 
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0, 10)
-UICorner.Parent = paragraph
+    -- Memberikan sudut yang melengkung pada frame
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 10)
+    UICorner.Parent = paragraph
 
-local title = Instance.new("TextLabel")
-title.Name = "Title"
-title.AnchorPoint = Vector2.new(0.5, 0)
-title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-title.BackgroundTransparency = 1.000
-title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-title.BorderSizePixel = 0
-title.Position = UDim2.new(0.5, 0, 0.05, 0) -- Tetap di atas
-title.Size = UDim2.new(0, 200, 0, 20) -- Lebih tinggi agar lebih jelas
-title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Bold) -- Bold untuk lebih tegas
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.TextScaled = true
-title.TextWrapped = true
-title.TextXAlignment = Enum.TextXAlignment.Left
-title.Text = self.title
-title.Parent = paragraph
+    -- Membuat judul (title)
+    local title = Instance.new("TextLabel")
+    title.Name = "Title"
+    title.AnchorPoint = Vector2.new(0.5, 0)
+    title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    title.BackgroundTransparency = 1.000
+    title.BorderSizePixel = 0
+    title.Position = UDim2.new(0.5, 0, 0.05, 0) -- Posisi di atas
+    title.Size = UDim2.new(0, 200, 0, 20) -- Ukuran judul
+    title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Bold) -- Font bold
+    title.TextColor3 = Color3.fromRGB(255, 255, 255) -- Warna putih
+    title.TextScaled = true
+    title.TextSize = 14.000
+    title.TextWrapped = true
+    title.TextXAlignment = Enum.TextXAlignment.Left
+    title.Text = self.title -- Judul dari parameter
+    title.Parent = paragraph
 
-local description = Instance.new("TextLabel")
-description.Name = "Description"
-description.AnchorPoint = Vector2.new(0.5, 0)
-description.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-description.BackgroundTransparency = 1.000
-description.BorderColor3 = Color3.fromRGB(0, 0, 0)
-description.BorderSizePixel = 0
-description.Position = UDim2.new(0.5, 0, 0.4, 0) -- Sedikit lebih ke bawah agar lebih teratur
-description.Size = UDim2.new(0, 200, 0, 35) -- Lebih besar agar deskripsi lebih enak dibaca
-description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Medium) -- Medium agar lebih terbaca
-description.TextColor3 = Color3.fromRGB(200, 200, 200)
-description.TextScaled = true
-description.TextWrapped = true
-description.TextXAlignment = Enum.TextXAlignment.Left
-description.Text = self.description
-description.Parent = paragraph
-
+    -- Membuat deskripsi (description)
+    local description = Instance.new("TextLabel")
+    description.Name = "Description"
+    description.AnchorPoint = Vector2.new(0.5, 0)
+    description.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    description.BackgroundTransparency = 1.000
+    description.BorderSizePixel = 0
+    description.Position = UDim2.new(0.5, 0, 0.45, 0) -- Posisi di bawah judul
+    description.Size = UDim2.new(0, 200, 0, 30) -- Ukuran deskripsi
+    description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular) -- Font regular
+    description.TextColor3 = Color3.fromRGB(200, 200, 200) -- Warna abu-abu
+    description.TextScaled = true
+    description.TextSize = 12.000
+    description.TextWrapped = true
+    description.TextXAlignment = Enum.TextXAlignment.Left
+    description.Text = self.description -- Deskripsi dari parameter
+    description.Parent = paragraph
 
     return paragraph
 end
+
 
 
         
