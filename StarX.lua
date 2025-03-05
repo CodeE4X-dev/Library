@@ -1,1 +1,1 @@
-
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/CodeE4X-dev/Library/refs/heads/main/StarX.lua"))()
