@@ -4,7 +4,7 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-print('Library: V 0.0.5')
+print('Library: V 0.0.9')
 local Mouse = LocalPlayer:GetMouse();
 
 local Library = {
@@ -304,7 +304,7 @@ function Library:new()
 	Icon.BorderSizePixel = 0
 	Icon.Position = UDim2.new(0.268000007, 0, 0.5, 0)
 	Icon.Size = UDim2.new(0, 15, 0, 15)
-	Icon.Image = "rbxassetid://10734975692"
+	Icon.Image = "rbxassetid://10723346959"
     container.Container.InputBegan:Connect(function(input: InputObject)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             Library.dragging = true
@@ -416,151 +416,152 @@ function Library:new()
 		end
 	end
 
-    function Tab:create_tab()
+    function Tab:create_tab(logoImage)
         local tab = Instance.new("TextButton")
-		tab.Name = "Tab"
-		tab.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-		tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		tab.BorderSizePixel = 0
-		tab.Size = UDim2.new(0, 174, 0, 40)
-		tab.ZIndex = 2
-		tab.AutoButtonColor = false
-		tab.Font = Enum.Font.SourceSans
-		tab.Text = ""
-		tab.TextColor3 = Color3.fromRGB(0, 0, 0)
-		tab.TextSize = 14.000
-		tab.Parent = tabs
-
-		local tabCorner = Instance.new("UICorner")
-		tabCorner.CornerRadius = UDim.new(0, 5)
-		tabCorner.Parent = tab
-
-		local TextLabel = Instance.new("TextLabel")
-		TextLabel.Parent = tab
-		TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-		TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		TextLabel.BackgroundTransparency = 1.000
-		TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		TextLabel.BorderSizePixel = 0
-		TextLabel.Position = UDim2.new(0.58965224, 0, 0.5, 0)
-		TextLabel.Size = UDim2.new(0, 124, 0, 15)
-		TextLabel.ZIndex = 3
-		TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-		TextLabel.Text = self
-		TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-		TextLabel.TextScaled = true
-		TextLabel.TextSize = 14.000
-		TextLabel.TextTransparency = 0.300
-		TextLabel.TextWrapped = true
-		TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-
-		local Logo = Instance.new("ImageLabel")
-		Logo.Name = "Logo"
-		Logo.Parent = tab
-		Logo.AnchorPoint = Vector2.new(0.5, 0.5)
-		Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Logo.BackgroundTransparency = 1.000
-		Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Logo.BorderSizePixel = 0
-		Logo.Position = UDim2.new(0.130999997, 0, 0.5, 0)
-		Logo.Size = UDim2.new(0, 17, 0, 17)
-		Logo.ZIndex = 3
-		Logo.Image = "rbxassetid://17290697757"
-		Logo.ImageTransparency = 0.3001
-
-		local Glow = Instance.new("ImageLabel")
-		Glow.Name = "Glow"
-		Glow.Parent = tab
-		Glow.AnchorPoint = Vector2.new(0.5, 0.5)
-		Glow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Glow.BackgroundTransparency = 1.000
-		Glow.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Glow.BorderSizePixel = 0
-		Glow.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Glow.Size = UDim2.new(0, 190, 0, 53)
-		Glow.Image = "rbxassetid://17290723539"
-		Glow.ImageTransparency = 1.000
-
-		local Fill = Instance.new("Frame")
-		Fill.Name = "Fill"
-		Fill.Parent = tab
-		Fill.AnchorPoint = Vector2.new(0.5, 0.5)
-		Fill.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Fill.BackgroundTransparency = 1.000
-		Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Fill.BorderSizePixel = 0
-		Fill.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Fill.Size = UDim2.new(0, 174, 0, 40)
-		Fill.ZIndex = 2
-		local UICorner_2 = Instance.new("UICorner")
-		UICorner_2.CornerRadius = UDim.new(0, 10)
-		UICorner_2.Parent = Fill
-
-		local UIGradient = Instance.new("UIGradient")
-		UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(66, 89, 182)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(37, 57, 137))}
-		UIGradient.Rotation = 20
-		UIGradient.Parent = Fill
-
-		local left_section = Instance.new("ScrollingFrame")
-		left_section.Name = "LeftSection"
-		left_section.Active = true
-		left_section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		left_section.BackgroundTransparency = 1.000
-		left_section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		left_section.BorderSizePixel = 0
-		left_section.Position = UDim2.new(0.326180249, 0, 0.126760557, 0)
-		left_section.Size = UDim2.new(0, 215, 0, 372)
-		left_section.AutomaticCanvasSize = Enum.AutomaticSize.XY
-		left_section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
-		left_section.ScrollBarThickness = 0
-
-		local leftsectionlist = Instance.new("UIListLayout")
-		leftsectionlist.Parent = left_section
-		leftsectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		leftsectionlist.SortOrder = Enum.SortOrder.LayoutOrder
-		leftsectionlist.Padding = UDim.new(0, 7)
-
-		local right_section = Instance.new("ScrollingFrame")
-		right_section.Name = "RightSection"
-		right_section.Active = true
-		right_section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		right_section.BackgroundTransparency = 1.000
-		right_section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		right_section.BorderSizePixel = 0
-		right_section.Position = UDim2.new(0.662374794, 0, 0.126760557, 0)
-		right_section.Size = UDim2.new(0, 215, 0, 372)
-		right_section.AutomaticCanvasSize = Enum.AutomaticSize.XY
-		right_section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
-		right_section.ScrollBarThickness = 0
-
-		local rightsectionlist = Instance.new("UIListLayout")
-		rightsectionlist.Parent = right_section
-
-		rightsectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		rightsectionlist.SortOrder = Enum.SortOrder.LayoutOrder
-		rightsectionlist.Padding = UDim.new(0, 7)
-
-		if container.Container:FindFirstChild('RightSection') then
-			left_section.Visible = false
-			right_section.Visible = false
-		else
-			Tab.open_tab({
-				tab = tab,
-				left_section = left_section,
-				right_section = right_section
-			})
-		end
-
-		left_section.Parent = container.Container
-		right_section.Parent = container.Container
-
-		tab.MouseButton1Click:Connect(function()
-			Tab.open_tab({
-				tab = tab,
-				left_section = left_section,
-				right_section = right_section
-			})
-		end)
+        tab.Name = "Tab"
+        tab.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+        tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        tab.BorderSizePixel = 0
+        tab.Size = UDim2.new(0, 174, 0, 40)
+        tab.ZIndex = 2
+        tab.AutoButtonColor = false
+        tab.Font = Enum.Font.SourceSans
+        tab.Text = ""
+        tab.TextColor3 = Color3.fromRGB(0, 0, 0)
+        tab.TextSize = 14.000
+        tab.Parent = tabs
+    
+        local tabCorner = Instance.new("UICorner")
+        tabCorner.CornerRadius = UDim.new(0, 5)
+        tabCorner.Parent = tab
+    
+        local TextLabel = Instance.new("TextLabel")
+        TextLabel.Parent = tab
+        TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+        TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel.BackgroundTransparency = 1.000
+        TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        TextLabel.BorderSizePixel = 0
+        TextLabel.Position = UDim2.new(0.58965224, 0, 0.5, 0)
+        TextLabel.Size = UDim2.new(0, 124, 0, 15)
+        TextLabel.ZIndex = 3
+        TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+        TextLabel.Text = self
+        TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel.TextScaled = true
+        TextLabel.TextSize = 14.000
+        TextLabel.TextTransparency = 0.300
+        TextLabel.TextWrapped = true
+        TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+    
+        
+        local Logo = Instance.new("ImageLabel")
+        Logo.Name = "Logo"
+        Logo.Parent = tab
+        Logo.AnchorPoint = Vector2.new(0.5, 0.5)
+        Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Logo.BackgroundTransparency = 1.000
+        Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        Logo.BorderSizePixel = 0
+        Logo.Position = UDim2.new(0.130999997, 0, 0.5, 0)
+        Logo.Size = UDim2.new(0, 17, 0, 17)
+        Logo.ZIndex = 3
+        Logo.Image = logoImage or "rbxassetid://17290697757" 
+        Logo.ImageTransparency = 0.3001
+    
+        local Glow = Instance.new("ImageLabel")
+        Glow.Name = "Glow"
+        Glow.Parent = tab
+        Glow.AnchorPoint = Vector2.new(0.5, 0.5)
+        Glow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Glow.BackgroundTransparency = 1.000
+        Glow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        Glow.BorderSizePixel = 0
+        Glow.Position = UDim2.new(0.5, 0, 0.5, 0)
+        Glow.Size = UDim2.new(0, 190, 0, 53)
+        Glow.Image = "rbxassetid://17290723539"
+        Glow.ImageTransparency = 1.000
+    
+        local Fill = Instance.new("Frame")
+        Fill.Name = "Fill"
+        Fill.Parent = tab
+        Fill.AnchorPoint = Vector2.new(0.5, 0.5)
+        Fill.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Fill.BackgroundTransparency = 1.000
+        Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        Fill.BorderSizePixel = 0
+        Fill.Position = UDim2.new(0.5, 0, 0.5, 0)
+        Fill.Size = UDim2.new(0, 174, 0, 40)
+        Fill.ZIndex = 2
+        local UICorner_2 = Instance.new("UICorner")
+        UICorner_2.CornerRadius = UDim.new(0, 10)
+        UICorner_2.Parent = Fill
+    
+        local UIGradient = Instance.new("UIGradient")
+        UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(66, 89, 182)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(37, 57, 137))}
+        UIGradient.Rotation = 20
+        UIGradient.Parent = Fill
+    
+        local left_section = Instance.new("ScrollingFrame")
+        left_section.Name = "LeftSection"
+        left_section.Active = true
+        left_section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        left_section.BackgroundTransparency = 1.000
+        left_section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        left_section.BorderSizePixel = 0
+        left_section.Position = UDim2.new(0.326180249, 0, 0.126760557, 0)
+        left_section.Size = UDim2.new(0, 215, 0, 372)
+        left_section.AutomaticCanvasSize = Enum.AutomaticSize.XY
+        left_section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+        left_section.ScrollBarThickness = 0
+    
+        local leftsectionlist = Instance.new("UIListLayout")
+        leftsectionlist.Parent = left_section
+        leftsectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
+        leftsectionlist.SortOrder = Enum.SortOrder.LayoutOrder
+        leftsectionlist.Padding = UDim.new(0, 7)
+    
+        local right_section = Instance.new("ScrollingFrame")
+        right_section.Name = "RightSection"
+        right_section.Active = true
+        right_section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        right_section.BackgroundTransparency = 1.000
+        right_section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        right_section.BorderSizePixel = 0
+        right_section.Position = UDim2.new(0.662374794, 0, 0.126760557, 0)
+        right_section.Size = UDim2.new(0, 215, 0, 372)
+        right_section.AutomaticCanvasSize = Enum.AutomaticSize.XY
+        right_section.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+        right_section.ScrollBarThickness = 0
+    
+        local rightsectionlist = Instance.new("UIListLayout")
+        rightsectionlist.Parent = right_section
+        rightsectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
+        rightsectionlist.SortOrder = Enum.SortOrder.LayoutOrder
+        rightsectionlist.Padding = UDim.new(0, 7)
+    
+        if container.Container:FindFirstChild('RightSection') then
+            left_section.Visible = false
+            right_section.Visible = false
+        else
+            Tab.open_tab({
+                tab = tab,
+                left_section = left_section,
+                right_section = right_section
+            })
+        end
+    
+        left_section.Parent = container.Container
+        right_section.Parent = container.Container
+    
+        tab.MouseButton1Click:Connect(function()
+            Tab.open_tab({
+                tab = tab,
+                left_section = left_section,
+                right_section = right_section
+            })
+        end)
+    end
 
         local Module = {}
 
@@ -1270,7 +1271,7 @@ function Module:create_button()
     TextLabel.AnchorPoint = Vector2.new(0, 0.5)
     TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     TextLabel.BackgroundTransparency = 1.000
-    TextLabel.Position = UDim2.new(0.05, 0, 0.5, 0) -- Ujung kiri
+    TextLabel.Position = UDim2.new(0.05, 0, 0.5, 0) 
     TextLabel.Size = UDim2.new(0, 150, 0, 15)
     TextLabel.ZIndex = 3
     TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
@@ -1287,7 +1288,7 @@ function Module:create_button()
     Icon.AnchorPoint = Vector2.new(1, 0.5)
     Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Icon.BackgroundTransparency = 1.000
-    Icon.Position = UDim2.new(0.95, 0, 0.5, 0) -- Ujung kanan
+    Icon.Position = UDim2.new(0.95, 0, 0.5, 0) 
     Icon.Size = UDim2.new(0, 17, 0, 17)
     Icon.ZIndex = 3
     Icon.Image = "rbxassetid://10709797382"
@@ -1301,61 +1302,132 @@ function Module:create_button()
 end
 
 
+
 function Module:create_paragraph()
     local section = self.section == 'left' and left_section or right_section
 
-    -- Membuat frame utama untuk paragraf
-    local paragraph = Instance.new("Frame")
-    paragraph.Name = "Paragraph"
-    paragraph.BackgroundColor3 = Color3.fromRGB(27, 28, 33) -- Warna background
-    paragraph.BorderSizePixel = 0
-    paragraph.Size = UDim2.new(0, 215, 0, 60) -- Ukuran frame
-    paragraph.Parent = section
+    
+    local paragraphContainer = Instance.new("Frame")
+    paragraphContainer.Name = "ParagraphContainer"
+    paragraphContainer.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+    paragraphContainer.BorderSizePixel = 0
+    paragraphContainer.Size = UDim2.new(0, 215, 0, 0) 
+    paragraphContainer.Parent = section
 
-    -- Memberikan sudut yang melengkung pada frame
     local UICorner = Instance.new("UICorner")
     UICorner.CornerRadius = UDim.new(0, 10)
-    UICorner.Parent = paragraph
+    UICorner.Parent = paragraphContainer
 
-    -- Membuat judul (title)
+    
     local title = Instance.new("TextLabel")
     title.Name = "Title"
-    title.AnchorPoint = Vector2.new(0.5, 0)
-    title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    title.BackgroundTransparency = 1.000
-    title.BorderSizePixel = 0
-    title.Position = UDim2.new(0.5, 0, 0.05, 0) -- Posisi di atas
-    title.Size = UDim2.new(0, 215, 0, 37) -- Ukuran judul
-    title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Bold) -- Font bold
-    title.TextColor3 = Color3.fromRGB(255, 255, 255) -- Warna putih
-    title.TextScaled = true
-    title.TextSize = 8.000
-    title.TextWrapped = true
+    title.Text = self.title
+    title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    title.TextSize = 16
+    title.Font = Enum.Font.Montserrat
+    title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
     title.TextXAlignment = Enum.TextXAlignment.Left
-    title.Text = self.title -- Judul dari parameter
-    title.Parent = paragraph
+    title.TextYAlignment = Enum.TextYAlignment.Top
+    title.BackgroundTransparency = 1
+    title.Size = UDim2.new(1, -20, 0, 20) 
+    title.Position = UDim2.new(0, 10, 0, 10) 
+    title.Parent = paragraphContainer
 
-    -- Membuat deskripsi (description)
+    
     local description = Instance.new("TextLabel")
     description.Name = "Description"
-    description.AnchorPoint = Vector2.new(0.5, 0)
-    description.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    description.BackgroundTransparency = 1.000
-    description.BorderSizePixel = 0
-    description.Position = UDim2.new(0.5, 0, 0.45, 0) -- Posisi di bawah judul
-    description.Size = UDim2.new(0, 215, 0, 37) -- Ukuran deskripsi
-    description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular) -- Font regular
-    description.TextColor3 = Color3.fromRGB(200, 200, 200) -- Warna abu-abu
-    description.TextScaled = true
-    description.TextSize = 8.000
-    description.TextWrapped = true
+    description.Text = self.description
+    description.TextColor3 = Color3.fromRGB(200, 200, 200) 
+    description.TextSize = 14
+    description.Font = Enum.Font.Montserrat
+    description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
     description.TextXAlignment = Enum.TextXAlignment.Left
-    description.Text = self.description -- Deskripsi dari parameter
-    description.Parent = paragraph
+    description.TextYAlignment = Enum.TextYAlignment.Top
+    description.TextWrapped = true
+    description.BackgroundTransparency = 1
+    description.Size = UDim2.new(1, -20, 0, 0) 
+    description.Position = UDim2.new(0, 10, 0, 40) 
+    description.Parent = paragraphContainer
 
-    return paragraph
+    
+    local textBounds = TextService:GetTextSize(
+        description.Text,
+        description.TextSize,
+        description.Font,
+        Vector2.new(description.AbsoluteSize.X, math.huge) 
+    )
+
+    
+    description.Size = UDim2.new(1, -20, 0, textBounds.Y) 
+
+    
+    paragraphContainer.Size = UDim2.new(0, 215, 0, 60 + textBounds.Y) 
+
+    return paragraphContainer
 end
 
+
+function Module:create_image()
+    local section = self.section == 'left' and left_section or right_section
+
+    
+    local imageContainer = Instance.new("Frame")
+    imageContainer.Name = "ImageContainer"
+    imageContainer.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+    imageContainer.BorderSizePixel = 0
+    imageContainer.Size = UDim2.new(0, 215, 0, 0) 
+    imageContainer.Parent = section
+
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 10)
+    UICorner.Parent = imageContainer
+
+    
+    local image = Instance.new("ImageLabel")
+    image.Name = "Image"
+    image.Image = self.image 
+    image.BackgroundTransparency = 1
+    image.Size = UDim2.new(1, 0, 0, 150) 
+    image.Position = UDim2.new(0, 0, 0, 0)
+    image.ScaleType = Enum.ScaleType.Crop 
+    image.Parent = imageContainer
+
+    
+    local imageSize = self.imageSize or Vector2.new(215, 150) 
+    image.Size = UDim2.new(1, 0, 0, imageSize.Y) 
+
+    
+    local description = Instance.new("TextLabel")
+    description.Name = "Description"
+    description.Text = self.description
+    description.TextColor3 = Color3.fromRGB(200, 200, 200) 
+    description.TextSize = 14
+    description.Font = Enum.Font.Montserrat
+    description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
+    description.TextXAlignment = Enum.TextXAlignment.Left
+    description.TextYAlignment = Enum.TextYAlignment.Top
+    description.TextWrapped = true
+    description.BackgroundTransparency = 1
+    description.Size = UDim2.new(1, -20, 0, 0) 
+    description.Position = UDim2.new(0, 10, 0, imageSize.Y + 10) 
+    description.Parent = imageContainer
+
+    
+    local textBounds = TextService:GetTextSize(
+        description.Text,
+        description.TextSize,
+        description.Font,
+        Vector2.new(description.AbsoluteSize.X, math.huge) 
+    )
+
+    
+    description.Size = UDim2.new(1, -20, 0, textBounds.Y) 
+
+    
+    imageContainer.Size = UDim2.new(0, 215, 0, imageSize.Y + 20 + textBounds.Y) 
+
+    return imageContainer
+end
 
 
         
@@ -1459,4 +1531,3 @@ end
 end
 
 return Library
-
