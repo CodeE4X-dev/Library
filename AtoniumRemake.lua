@@ -1527,7 +1527,5 @@ end
 		end
         return Module
     end
-    return Tab
-end
 
 return Library
