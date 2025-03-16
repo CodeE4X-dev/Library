@@ -51,7 +51,7 @@ Tab:create_slider({
     end
 })
 ```
-``
+```
 Tab:create_button({
     name = "Buttun",
     section = "left"
