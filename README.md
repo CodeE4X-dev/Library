@@ -21,7 +21,7 @@ just try it im so lazy af
 # Oioioi
 oioioi
 ```
-local Library = loadstring(game:HttpGet("URL_KE_RAW_LIBRARY"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/CodeE4X-dev/Library/refs/heads/main/AtoniumRemake.lua"))()
 local Window = Library:new()
 ```
 ```
