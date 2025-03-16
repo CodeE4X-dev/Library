@@ -4,7 +4,7 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-print('Library: V 0.0.9')
+print('Library: V 0.1.0')
 local Mouse = LocalPlayer:GetMouse();
 
 local Library = {
@@ -56,12 +56,35 @@ function Library:save_flags()
 end
 
 function Library:load_flags()
-    if not isfile(`StarX/{game.GameId}.lua`) then Library.save_flags() return end
+    local filePath = `StarX/{game.GameId}.lua`
 
-    local flags = readfile(`StarX/{game.GameId}.lua`)
-    if not flags then Library.save_flags() return end
+    -- Check if the file exists
+    if not isfile(filePath) then
+        Library.save_flags() -- Create a new file if it doesn't exist
+        return
+    end
 
-    Library.Flags = HttpService:JSONDecode(flags)
+    -- Read the file
+    local flags = readfile(filePath)
+
+    -- Check if the file is empty or invalid
+    if not flags or flags == "" then
+        Library.Flags = {} -- Initialize with an empty table
+        Library.save_flags() -- Save the empty table to the file
+        return
+    end
+
+    -- Attempt to decode the JSON data
+    local success, decoded = pcall(HttpService.JSONDecode, HttpService, flags)
+    if not success then
+        warn("Failed to decode flags:", decoded)
+        Library.Flags = {} -- Initialize with an empty table
+        Library.save_flags() -- Save the empty table to the file
+        return
+    end
+
+    -- Assign the decoded flags
+    Library.Flags = decoded
 end
 
 Library.load_flags()
