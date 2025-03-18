@@ -4,7 +4,7 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-print('Library: V 0.1.2')
+print('sigma v2')
 local Mouse = LocalPlayer:GetMouse();
 
 local Library = {
@@ -35,7 +35,7 @@ end
 
 function Library:clear()
 	for _, object in CoreGui:GetChildren() do
-		if object.Name ~= "Star" then
+		if object.Name ~= "Astral" then
 			continue
 		end
 	
@@ -56,35 +56,12 @@ function Library:save_flags()
 end
 
 function Library:load_flags()
-    local filePath = `StarX/{game.GameId}.lua`
+    if not isfile(`Astral hub/{game.GameId}.lua`) then Library.save_flags() return end
 
-    -- Check if the file exists
-    if not isfile(filePath) then
-        Library.save_flags() -- Create a new file if it doesn't exist
-        return
-    end
+    local flags = readfile(`Astral hub/{game.GameId}.lua`)
+    if not flags then Library.save_flags() return end
 
-    -- Read the file
-    local flags = readfile(filePath)
-
-    -- Check if the file is empty or invalid
-    if not flags or flags == "" then
-        Library.Flags = {} -- Initialize with an empty table
-        Library.save_flags() -- Save the empty table to the file
-        return
-    end
-
-    -- Attempt to decode the JSON data
-    local success, decoded = pcall(HttpService.JSONDecode, HttpService, flags)
-    if not success then
-        warn("Failed to decode flags:", decoded)
-        Library.Flags = {} -- Initialize with an empty table
-        Library.save_flags() -- Save the empty table to the file
-        return
-    end
-
-    -- Assign the decoded flags
-    Library.Flags = decoded
+    Library.Flags = HttpService:JSONDecode(flags)
 end
 
 Library.load_flags()
@@ -158,7 +135,7 @@ end
 
 function Library:new()
 	local container = Instance.new("ScreenGui")
-	container.Name = "Star"
+	container.Name = "Astral"
      container.Parent = CoreGui
 
      Library.core = container
@@ -327,7 +304,7 @@ function Library:new()
 	Icon.BorderSizePixel = 0
 	Icon.Position = UDim2.new(0.268000007, 0, 0.5, 0)
 	Icon.Size = UDim2.new(0, 15, 0, 15)
-	Icon.Image = "rbxassetid://10723346959"
+	Icon.Image = "rbxassetid://10734975692"
     container.Container.InputBegan:Connect(function(input: InputObject)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             Library.dragging = true
@@ -584,7 +561,6 @@ function Library:new()
 				right_section = right_section
 			})
 		end)
-    end
 
         local Module = {}
 
@@ -1267,193 +1243,6 @@ function Library:new()
 
             return Textbox;
         end
-
-
-function Module:create_button()
-    local section = self.section == 'left' and left_section or right_section
-
-    local button = Instance.new("TextButton")
-    button.Name = "Button"
-    button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-    button.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    button.BorderSizePixel = 0
-    button.Size = UDim2.new(0, 215, 0, 37)
-    button.AutoButtonColor = false
-    button.Font = Enum.Font.SourceSans
-    button.Text = ""
-    button.TextColor3 = Color3.fromRGB(0, 0, 0)
-    button.TextSize = 14.000
-    button.Parent = section
-
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 10)
-    UICorner.Parent = button
-
-    local TextLabel = Instance.new("TextLabel")
-    TextLabel.Parent = button
-    TextLabel.AnchorPoint = Vector2.new(0, 0.5)
-    TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    TextLabel.BackgroundTransparency = 1.000
-    TextLabel.Position = UDim2.new(0.05, 0, 0.5, 0) 
-    TextLabel.Size = UDim2.new(0, 150, 0, 15)
-    TextLabel.ZIndex = 3
-    TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-    TextLabel.Text = self.name
-    TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TextLabel.TextScaled = true
-    TextLabel.TextSize = 14.000
-    TextLabel.TextWrapped = true
-    TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-
-    local Icon = Instance.new("ImageLabel")
-    Icon.Name = "Icon"
-    Icon.Parent = button
-    Icon.AnchorPoint = Vector2.new(1, 0.5)
-    Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Icon.BackgroundTransparency = 1.000
-    Icon.Position = UDim2.new(0.95, 0, 0.5, 0) 
-    Icon.Size = UDim2.new(0, 17, 0, 17)
-    Icon.ZIndex = 3
-    Icon.Image = "rbxassetid://10709797382"
-    Icon.ImageTransparency = 0.300
-
-    button.MouseButton1Click:Connect(function()
-        self.callback()
-    end)
-
-    return button
-end
-
-
-
-function Module:create_paragraph()
-    local section = self.section == 'left' and left_section or right_section
-
-    
-    local paragraphContainer = Instance.new("Frame")
-    paragraphContainer.Name = "ParagraphContainer"
-    paragraphContainer.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-    paragraphContainer.BorderSizePixel = 0
-    paragraphContainer.Size = UDim2.new(0, 215, 0, 0) 
-    paragraphContainer.Parent = section
-
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 10)
-    UICorner.Parent = paragraphContainer
-
-    
-    local title = Instance.new("TextLabel")
-    title.Name = "Title"
-    title.Text = self.title
-    title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    title.TextSize = 16
-    title.Font = Enum.Font.Montserrat
-    title.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-    title.TextXAlignment = Enum.TextXAlignment.Left
-    title.TextYAlignment = Enum.TextYAlignment.Top
-    title.BackgroundTransparency = 1
-    title.Size = UDim2.new(1, -20, 0, 20) 
-    title.Position = UDim2.new(0, 10, 0, 10) 
-    title.Parent = paragraphContainer
-
-    
-    local description = Instance.new("TextLabel")
-    description.Name = "Description"
-    description.Text = self.description
-    description.TextColor3 = Color3.fromRGB(200, 200, 200) 
-    description.TextSize = 14
-    description.Font = Enum.Font.Montserrat
-    description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
-    description.TextXAlignment = Enum.TextXAlignment.Left
-    description.TextYAlignment = Enum.TextYAlignment.Top
-    description.TextWrapped = true
-    description.BackgroundTransparency = 1
-    description.Size = UDim2.new(1, -20, 0, 0) 
-    description.Position = UDim2.new(0, 10, 0, 40) 
-    description.Parent = paragraphContainer
-
-    
-    local textBounds = TextService:GetTextSize(
-        description.Text,
-        description.TextSize,
-        description.Font,
-        Vector2.new(description.AbsoluteSize.X, math.huge) 
-    )
-
-    
-    description.Size = UDim2.new(1, -20, 0, textBounds.Y) 
-
-    
-    paragraphContainer.Size = UDim2.new(0, 215, 0, 60 + textBounds.Y) 
-
-    return paragraphContainer
-end
-
-
-function Module:create_image()
-    local section = self.section == 'left' and left_section or right_section
-
-    
-    local imageContainer = Instance.new("Frame")
-    imageContainer.Name = "ImageContainer"
-    imageContainer.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-    imageContainer.BorderSizePixel = 0
-    imageContainer.Size = UDim2.new(0, 215, 0, 0) 
-    imageContainer.Parent = section
-
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 10)
-    UICorner.Parent = imageContainer
-
-    
-    local image = Instance.new("ImageLabel")
-    image.Name = "Image"
-    image.Image = self.image 
-    image.BackgroundTransparency = 1
-    image.Size = UDim2.new(1, 0, 0, 150) 
-    image.Position = UDim2.new(0, 0, 0, 0)
-    image.ScaleType = Enum.ScaleType.Crop 
-    image.Parent = imageContainer
-
-    
-    local imageSize = self.imageSize or Vector2.new(215, 150) 
-    image.Size = UDim2.new(1, 0, 0, imageSize.Y) 
-
-    
-    local description = Instance.new("TextLabel")
-    description.Name = "Description"
-    description.Text = self.description
-    description.TextColor3 = Color3.fromRGB(200, 200, 200) 
-    description.TextSize = 14
-    description.Font = Enum.Font.Montserrat
-    description.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Regular)
-    description.TextXAlignment = Enum.TextXAlignment.Left
-    description.TextYAlignment = Enum.TextYAlignment.Top
-    description.TextWrapped = true
-    description.BackgroundTransparency = 1
-    description.Size = UDim2.new(1, -20, 0, 0) 
-    description.Position = UDim2.new(0, 10, 0, imageSize.Y + 10) 
-    description.Parent = imageContainer
-
-    
-    local textBounds = TextService:GetTextSize(
-        description.Text,
-        description.TextSize,
-        description.Font,
-        Vector2.new(description.AbsoluteSize.X, math.huge) 
-    )
-
-    
-    description.Size = UDim2.new(1, -20, 0, textBounds.Y) 
-
-    
-    imageContainer.Size = UDim2.new(0, 215, 0, imageSize.Y + 20 + textBounds.Y) 
-
-    return imageContainer
-end
-
-
-        
 		function Module:create_keybind()
 			local section = self.section == 'left' and left_section or right_section
 			local keybind = Instance.new("TextButton")
@@ -1550,6 +1339,7 @@ end
 		end
         return Module
     end
+    return Tab
+end
 
 return Library
-
