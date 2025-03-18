@@ -4,7 +4,7 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-print('Library: V 0.1.0')
+print('Library: V 0.1.1')
 local Mouse = LocalPlayer:GetMouse();
 
 local Library = {
@@ -469,7 +469,7 @@ function Library:new()
         TextLabel.Size = UDim2.new(0, 124, 0, 15)
         TextLabel.ZIndex = 3
         TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-        TextLabel.Text = self
+        TextLabel.Text = self.name
         TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
         TextLabel.TextScaled = true
         TextLabel.TextSize = 14.000
@@ -477,7 +477,6 @@ function Library:new()
         TextLabel.TextWrapped = true
         TextLabel.TextXAlignment = Enum.TextXAlignment.Left
     
-        
         local Logo = Instance.new("ImageLabel")
         Logo.Name = "Logo"
         Logo.Parent = tab
@@ -489,7 +488,7 @@ function Library:new()
         Logo.Position = UDim2.new(0.130999997, 0, 0.5, 0)
         Logo.Size = UDim2.new(0, 17, 0, 17)
         Logo.ZIndex = 3
-        Logo.Image = logoImage or "rbxassetid://17290697757" 
+        Logo.Image = logoImage or "rbxassetid://17290697757"
         Logo.ImageTransparency = 0.3001
     
         local Glow = Instance.new("ImageLabel")
@@ -1552,3 +1551,4 @@ end
     end
 
 return Library
+
