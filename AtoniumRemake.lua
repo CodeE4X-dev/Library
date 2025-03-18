@@ -4,7 +4,7 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService')
 local CoreGui = game:GetService('CoreGui')
-print('akakakakkakakak')
+print('asssss')
 local Mouse = LocalPlayer:GetMouse();
 
 local Library = {
