@@ -1,19 +1,30 @@
 Fluent Themes:
-			Names = {
-				'Dark',
-				'Darker',
-				'Light',
-				'Aqua',
-				'Amethyst',
-				'Rose',
-				'Golden',
-				'DarkPurple',
-				'Dark Halloween',
-				'Light Halloween',
-				'Dark Typewriter',
-				'Jungle',
-				'Midnight'
-			}
+Names = {
+    "Dark",
+    "Darker",
+    "Light",
+    "Aqua",
+    "Amethyst",
+    "Rose",
+    "Golden",
+    "DarkPurple",
+    "Dark Halloween",
+    "Light Halloween",
+    "Dark Typewriter",
+    "Jungle",
+    "Midnight",
+    "Neon Glow",
+    "Neon Green",
+    "Neon Pink",
+    "Sunrise",
+    "Galaxy",
+    "Pastel",
+    "Crimson",
+    "Sunset",
+    "Oceanic",
+    "Minimalist",
+    "Cyberpunk"
+}
 
 Preview:
 just try it im so lazy af
