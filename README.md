@@ -1,6 +1,5 @@
-Fluent Themes:
-Names = {
-    "Dark",
+```
+Names = {    "Dark",
     "Darker",
     "Light",
     "Aqua",
