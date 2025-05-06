@@ -26,6 +26,31 @@ Names = {
     "Cyberpunk"
 }
 
+
+
+    Names = {
+        "Lunar Glow",
+        "Lunar Dusk",
+        "Abyss Eclipse",
+        "Ocean Depths",
+        "Forest Canopy",
+        "Sunset Horizon",
+        "Midnight Violet",
+        "Arctic Frost",
+        "Ruby Ember",
+        "Emerald Glow",
+        "Sapphire Dream",
+        "Golden Dawn",
+        "Amethyst Mist",
+        "Crimson Tide",
+        "Neon Pulse",
+        "Cyber Mint",
+        "Desert Sand",
+        "Lavender Fields",
+        "Obsidian Edge",
+        "Coral Reef"
+    },
+
 Preview:
 just try it im so lazy af
 
