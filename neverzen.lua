@@ -1893,14 +1893,20 @@ function NeverZen.new(config)
 	ThemeLabel.TextXAlignment = Enum.TextXAlignment.Right
 
 	-- Update status labels
-	local function updateStatus()
-		local fps = NeverZen:UpdateFPS()
-		local ping = NeverZen:GetPing()
-		
-		FPSLabel.Text = "FPS: " .. fps
-		PingLabel.Text = "Ping: " .. ping .. "ms"
-		ThemeLabel.Text = "Theme: " .. NeverZen.CurrentTheme
+local function updateStatus()
+	local fps = NeverZen:UpdateFPS()
+	local ping = NeverZen:GetPing()
+
+	local success, executor = pcall(identifyexecutor)
+	if not success or not executor or executor == "" then
+		executor = "ts executor is bad..."
 	end
+
+	FPSLabel.Text = "FPS: " .. fps
+	PingLabel.Text = "Ping: " .. ping .. "ms"
+	ThemeLabel.Text = "Executor: " .. executor
+end
+
 
 	-- Start status update loop
 	RunService.Heartbeat:Connect(updateStatus)
