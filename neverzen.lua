@@ -1,10 +1,8 @@
 --[[
-    		ENHANCED NEVERZEN INTERFACE
-
-    Author: 4lpaca (Enhanced by AI)
+    CREDIT TO REAL MAKER
+    Author: 4lpaca
     License: MIT
     GitHub: https://github.com/3345-c-a-t-s-u-s/NeverZen
-    Enhanced with: Smooth gradients, improved acrylic effects, and new themes
 --]]
 
 cloneref = cloneref or function(...) return ... end;
@@ -19,8 +17,10 @@ export type Services = {
 };
 
 local NeverZen = {
-	Version = '1.4-Enhanced'
+	Version = '1.4-NeverZen, Remaked by CodeE4X, Credit to Author: https://github.com/3345-c-a-t-s-u-s'
 };
+local verlib = NeverZen.Version
+print(verlib)
 
 NeverZen.Services = {
 	UserInputService = cloneref(game:GetService('UserInputService')),
