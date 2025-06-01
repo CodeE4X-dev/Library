@@ -1569,7 +1569,7 @@ function NeverZen.new(config)
 	MinButton.BorderSizePixel = 0
 	MinButton.Size = UDim2.new(1, 0, 1, 0)
 	MinButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-	MinButton.Image = "rbxassetid://9886659001"
+	MinButton.Image = "rbxassetid://10734886496"
 	MinButton.ImageTransparency = 0.200
 
 	Line_2.Name = NeverZen:RandomString()
