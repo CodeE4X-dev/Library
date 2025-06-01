@@ -7,6 +7,7 @@
     Enhanced with: Smooth gradients, improved acrylic effects, and new themes
 --]]
 
+
 cloneref = cloneref or function(...) return ... end;
 cloenfunction = cloenfunction or function(...) return ... end;
 hookfunction = hookfunction or function(a,b) return a end;
@@ -19,7 +20,7 @@ export type Services = {
 };
 
 local NeverZen = {
-	Version = '1.4-Enhanced'
+	Version = '2.0-Enhanced'
 };
 
 NeverZen.Services = {
@@ -27,6 +28,7 @@ NeverZen.Services = {
 	Players = cloneref(game:GetService('Players')),
 	ContentProvider = cloneref(game:GetService('ContentProvider')),
 	CoreGui = cloneref(game:FindFirstChild('CoreGui')),
+	Stats = cloneref(game:GetService('Stats')),
 };
 
 local TextService = cloneref(game:GetService('TextService'));
@@ -42,6 +44,13 @@ NeverZen.Services.CoreGui = (gethui and gethui()) or NeverZen.Services.CoreGui o
 NeverZen.MinimumTabSize = 600;
 
 local Services : Services = NeverZen.Services;
+
+-- FPS Counter
+local FPSCounter = {
+	LastTime = tick(),
+	FrameCount = 0,
+	FPS = 0
+}
 
 function NeverZen:IsMouseOverFrame(Frame)
 	local AbsPos, AbsSize = Frame.AbsolutePosition, Frame.AbsoluteSize;
@@ -250,6 +259,7 @@ function NeverZen:SetBlur(frame : Frame, NoAutoBackground, intensity)
 
 	return C4;
 end;
+
 
 function NeverZen:GetIcon(name : string) : string
 	local icons = {
@@ -1074,7 +1084,7 @@ function NeverZen:GetIcon(name : string) : string
 
 	}
 	
-	return icons['lucide-'..tostring(name)] or icons[name] or icons[tostring(name)] or "";
+	return icons['lucide-'..tostring(name)] or icons[name] or icons[tostring(name)] or "rbxassetid://10734977012";
 end;
 
 function NeverZen:RandomString() : string
@@ -1086,7 +1096,7 @@ function NeverZen:Rounding(num, numDecimalPlaces) : number
 	return math.floor(num * mult + 0.5) / mult
 end;
 
--- Enhanced theme system with gradients and better colors
+-- Enhanced theme system with all properties fixed
 NeverZen.Theme = {
 	WindowBackgroundColor = Color3.fromRGB(12, 12, 12),
 	WindowGradient = {Color3.fromRGB(15, 15, 15), Color3.fromRGB(8, 8, 8)},
@@ -1105,7 +1115,11 @@ NeverZen.Theme = {
 	AccentColor = Color3.fromRGB(161, 208, 42),
 }
 
+NeverZen.CurrentTheme = "Default"
+
 function NeverZen:SetTheme(name)
+	NeverZen.CurrentTheme = name
+	
 	if name == "Default" or name == "Gamesense" or name == "Skeet" then
 		NeverZen.Theme = {
 			WindowBackgroundColor = Color3.fromRGB(12, 12, 12),
@@ -1214,78 +1228,122 @@ function NeverZen:SetTheme(name)
 			IconColor = Color3.fromRGB(120, 180, 255),
 			AccentColor = Color3.fromRGB(50, 150, 255),
 		}
-    	elseif name == "Neverlose" then
+    elseif name == "Neverlose" then
 		NeverZen.Theme = {
 			WindowBackgroundColor = Color3.fromRGB(6,8,5),
+			WindowGradient = {Color3.fromRGB(9,11,8), Color3.fromRGB(4,6,3)},
 			HeadText = Color3.fromRGB(233,239,237),
 			LineColor = Color3.fromRGB(18,20,19),
 			BackgroundColor = Color3.fromRGB(6,8,5),
+			BackgroundGradient = {Color3.fromRGB(9,11,8), Color3.fromRGB(4,6,3)},
 			SectionColor = Color3.fromRGB(9,11,10),
+			SectionGradient = {Color3.fromRGB(12,14,11), Color3.fromRGB(7,9,8)},
 			Hightlight = Color3.fromRGB(0,169,239),
+			HighlightGradient = {Color3.fromRGB(0,169,239), Color3.fromRGB(0,140,200)},
 			StrokeColor = Color3.fromRGB(18,20,19),
 			StrokeColor2 = Color3.fromRGB(77,90,92),
 			BackgroundColor2 = Color3.fromRGB(10,14,13),
 			IconColor = Color3.fromRGB(5,164,233),
+			AccentColor = Color3.fromRGB(0,169,239),
 		};
 	elseif name == "Fatality" then
 		NeverZen.Theme = {
 			WindowBackgroundColor = Color3.fromRGB(8, 7, 20),
+			WindowGradient = {Color3.fromRGB(11,10,26), Color3.fromRGB(6,5,15)},
 			HeadText = Color3.fromRGB(245,245,245),
 			LineColor = Color3.fromRGB(54,47,86),
 			BackgroundColor = Color3.fromRGB(11,10,26),
+			BackgroundGradient = {Color3.fromRGB(17,14,36), Color3.fromRGB(8,7,20)},
 			SectionColor = Color3.fromRGB(17, 14, 36),
+			SectionGradient = {Color3.fromRGB(21,18,45), Color3.fromRGB(14,12,30)},
 			Hightlight = Color3.fromRGB(198,9,85),
+			HighlightGradient = {Color3.fromRGB(198,9,85), Color3.fromRGB(160,7,70)},
 			StrokeColor = Color3.fromRGB(54,47,86),
 			StrokeColor2 = Color3.fromRGB(54,47,86),
 			BackgroundColor2 = Color3.fromRGB(21,18,45),
 			IconColor = Color3.fromRGB(233,5,89),
+			AccentColor = Color3.fromRGB(198,9,85),
 		};
 	elseif name == "Anyx" then
 		NeverZen.Theme = {
 			WindowBackgroundColor = Color3.fromRGB(17, 17, 17),
+			WindowGradient = {Color3.fromRGB(20,20,20), Color3.fromRGB(14,14,14)},
 			HeadText = Color3.fromRGB(245,245,245),
 			LineColor = Color3.fromRGB(42, 42, 42),
 			BackgroundColor = Color3.fromRGB(20, 20, 20),
+			BackgroundGradient = {Color3.fromRGB(25,25,25), Color3.fromRGB(17,17,17)},
 			SectionColor = Color3.fromRGB(20,20,20),
+			SectionGradient = {Color3.fromRGB(25,25,25), Color3.fromRGB(17,17,17)},
 			Hightlight = Color3.fromRGB(81,195,206),
+			HighlightGradient = {Color3.fromRGB(81,195,206), Color3.fromRGB(65,155,165)},
 			StrokeColor = Color3.fromRGB(29,35,38),
 			StrokeColor2 = Color3.fromRGB(29,35,38),
 			BackgroundColor2 = Color3.fromRGB(31,31,31),
 			IconColor = Color3.fromRGB(128,174,172),
+			AccentColor = Color3.fromRGB(81,195,206),
 		};
 	elseif name == "Hyperion" then
 		NeverZen.Theme = {
 			WindowBackgroundColor = Color3.fromRGB(23, 26, 29),
+			WindowGradient = {Color3.fromRGB(38,43,49), Color3.fromRGB(18,21,24)},
 			HeadText = Color3.fromRGB(211,34,35),
 			LineColor = Color3.fromRGB(52,55,60),
 			BackgroundColor = Color3.fromRGB(38, 43, 49),
+			BackgroundGradient = {Color3.fromRGB(43,48,55), Color3.fromRGB(33,38,44)},
 			SectionColor = Color3.fromRGB(38,42,48),
+			SectionGradient = {Color3.fromRGB(43,48,55), Color3.fromRGB(33,37,43)},
 			Hightlight = Color3.fromRGB(197,29,29),
+			HighlightGradient = {Color3.fromRGB(197,29,29), Color3.fromRGB(160,23,23)},
 			StrokeColor = Color3.fromRGB(48,51,56),
 			StrokeColor2 = Color3.fromRGB(54, 58, 63),
 			BackgroundColor2 = Color3.fromRGB(43,48,55),
 			IconColor = Color3.fromRGB(220,221,222),
+			AccentColor = Color3.fromRGB(197,29,29),
 		};
 	elseif name == "Airflow" then
 		NeverZen.Theme = {
 			WindowBackgroundColor = Color3.fromRGB(41,40,38),
+			WindowGradient = {Color3.fromRGB(69,66,63), Color3.fromRGB(35,34,32)},
 			HeadText = Color3.fromRGB(229,229,228),
 			LineColor = Color3.fromRGB(49,49,48),
 			BackgroundColor = Color3.fromRGB(69,66,63),
+			BackgroundGradient = {Color3.fromRGB(75,72,69), Color3.fromRGB(60,57,54)},
 			SectionColor = Color3.fromRGB(42,41,40),
+			SectionGradient = {Color3.fromRGB(46,46,44), Color3.fromRGB(38,37,36)},
 			Hightlight = Color3.fromRGB(143,107,190),
+			HighlightGradient = {Color3.fromRGB(143,107,190), Color3.fromRGB(115,85,150)},
 			StrokeColor = Color3.fromRGB(49,49,48),
 			StrokeColor2 = Color3.fromRGB(36, 36, 35),
 			BackgroundColor2 = Color3.fromRGB(46,46,44),
 			IconColor = Color3.fromRGB(143,107,190),
+			AccentColor = Color3.fromRGB(143,107,190),
 		};
 	end;
 end;
 
+function NeverZen:GetPing()
+	local ping = 0
+	pcall(function()
+		ping = math.round(Services.Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+	end)
+	return ping
+end
+
+function NeverZen:UpdateFPS()
+	FPSCounter.FrameCount = FPSCounter.FrameCount + 1
+	local currentTime = tick()
+	if currentTime - FPSCounter.LastTime >= 1 then
+		FPSCounter.FPS = FPSCounter.FrameCount
+		FPSCounter.FrameCount = 0
+		FPSCounter.LastTime = currentTime
+	end
+	return FPSCounter.FPS
+end
+
 function NeverZen.new(config)
 	config = config or {};
 
-	config.Name = config.Name or "ENHANCED NEVERZEN";
+	config.Name = config.Name or "NEVERZEN";
 	config.Keybind = config.Keybind or Enum.KeyCode.LeftControl;
 	config.Scale = config.Scale or UDim2.new(0, 611, 0, 396);
 	config.Resizable = config.Resizable;
@@ -1314,6 +1372,7 @@ function NeverZen.new(config)
 	local WindowGradient = NeverZen:CreateGradient(nil, NeverZen.Theme.WindowGradient, 45)
 	local Header = Instance.new("Frame")
 	local HeaderText = Instance.new("TextLabel")
+	local VersionLabel = Instance.new("TextLabel")
 	local Line = Instance.new("Frame")
 	local Frame = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
@@ -1322,16 +1381,18 @@ function NeverZen.new(config)
 	local UIStroke_2 = Instance.new("UIStroke")
 	local UICorner_2 = Instance.new("UICorner")
 	local TextBox = Instance.new("TextBox")
-	local SettingsButton = Instance.new("ImageButton")
+	local ThemeDropdown = Instance.new("Frame")
+	local ThemeButton = Instance.new("TextButton")
+	local ThemeIcon = Instance.new("ImageLabel")
+	local ThemeText = Instance.new("TextLabel")
 	local MinButton = Instance.new("ImageButton")
 	local Line_2 = Instance.new("Frame")
 	local BthFrames = Instance.new("Frame")
-	local InformationFrame = Instance.new("Frame")
-	local ProfileIcon = Instance.new("ImageLabel")
-	local UICorner_3 = Instance.new("UICorner")
-	local UIStroke_3 = Instance.new("UIStroke")
-	local UsernameText = Instance.new("TextLabel")
-	local UIGradient = Instance.new("UIGradient")
+	local StatusFrame = Instance.new("Frame")
+	local StatusLine = Instance.new("Frame")
+	local FPSLabel = Instance.new("TextLabel")
+	local PingLabel = Instance.new("TextLabel")
+	local ThemeLabel = Instance.new("TextLabel")
 	local TabButtons = Instance.new("Frame")
 	local TBSFrame = Instance.new("ScrollingFrame")
 	local UIListLayout_2 = Instance.new("UIListLayout")
@@ -1439,13 +1500,32 @@ function NeverZen.new(config)
 	HeaderText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	HeaderText.BorderSizePixel = 0
 	HeaderText.Position = UDim2.new(0, 10, 0, -55)
-	HeaderText.Size = UDim2.new(0, 150, 1, -10)
+	HeaderText.Size = UDim2.new(0, 120, 1, -10)
 	HeaderText.Font = Enum.Font.GothamBold
 	HeaderText.Text = config.Name;
 	HeaderText.TextColor3 = NeverZen.Theme.HeadText
 	HeaderText.TextScaled = true
 	HeaderText.TextSize = 14.000
 	HeaderText.TextWrapped = true
+
+	-- Version label
+	VersionLabel.Name = NeverZen:RandomString()
+	VersionLabel.Parent = Header
+	VersionLabel.BackgroundColor3 = NeverZen.Theme.AccentColor
+	VersionLabel.BackgroundTransparency = 0.1
+	VersionLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	VersionLabel.BorderSizePixel = 0
+	VersionLabel.Position = UDim2.new(0, 140, 0, -55)
+	VersionLabel.Size = UDim2.new(0, 35, 0, 18)
+	VersionLabel.Font = Enum.Font.GothamBold
+	VersionLabel.Text = "v2.0"
+	VersionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	VersionLabel.TextSize = 10.000
+	VersionLabel.TextTransparency = 0.1
+
+	local VersionCorner = Instance.new("UICorner")
+	VersionCorner.CornerRadius = UDim.new(0, 4)
+	VersionCorner.Parent = VersionLabel
 
 	-- Add text gradient effect
 	local headerGradient = NeverZen:CreateGradient(HeaderText, {NeverZen.Theme.HeadText, NeverZen.Theme.AccentColor}, 90)
@@ -1455,6 +1535,9 @@ function NeverZen.new(config)
 	task.delay(0.5,function()
 		TweenService:Create(HeaderText,TweenInfo.new(1.2,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
 			Position = UDim2.new(0, 10, 0, 5)
+		}):Play()
+		TweenService:Create(VersionLabel,TweenInfo.new(1.2,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Position = UDim2.new(0, 140, 0, 15)
 		}):Play()
 	end)
 
@@ -1470,7 +1553,6 @@ function NeverZen.new(config)
 	-- Add subtle glow to line
 	local lineGradient = NeverZen:CreateGradient(Line, {NeverZen.Theme.AccentColor, NeverZen.Theme.LineColor}, 0, {0.3, 0.8})
 
-
 	Frame.Parent = Header
 	Frame.AnchorPoint = Vector2.new(1, 0.5)
 	Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1478,7 +1560,7 @@ function NeverZen.new(config)
 	Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Frame.BorderSizePixel = 0
 	Frame.Position = UDim2.new(1, -10, -0.5, 0)
-	Frame.Size = UDim2.new(0, 150, 0.5, 0)
+	Frame.Size = UDim2.new(0, 200, 0.5, 0)
 	Frame.ZIndex = 5
 
 	task.delay(0.6,function()
@@ -1501,7 +1583,7 @@ function NeverZen.new(config)
 	SearchFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	SearchFrame.BorderSizePixel = 0
 	SearchFrame.ClipsDescendants = true
-	SearchFrame.Size = UDim2.new(0, 140, 0, 22)
+	SearchFrame.Size = UDim2.new(0, 100, 0, 22)
 
 	SearchButton.Name = NeverZen:RandomString()
 	SearchButton.Parent = SearchFrame
@@ -1513,7 +1595,7 @@ function NeverZen.new(config)
 	SearchButton.Position = UDim2.new(1, -2, 0.5, 0)
 	SearchButton.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
 	SearchButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-	SearchButton.Image = "rbxassetid://10734943674"
+	SearchButton.Image = NeverZen:GetIcon("search")
 	SearchButton.ImageTransparency = 0.200
 
 	UIStroke_2.Color = NeverZen.Theme.LineColor;
@@ -1532,15 +1614,14 @@ function NeverZen.new(config)
 	TextBox.Size = UDim2.new(1, -27, 0.649999976, 0)
 	TextBox.ClearTextOnFocus = false
 	TextBox.Font = Enum.Font.GothamMedium
-	TextBox.PlaceholderText = "Search"
+	TextBox.PlaceholderText = "Search..."
 	TextBox.Text = ""
 	TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextBox.TextSize = 14.000
+	TextBox.TextSize = 12.000
 	TextBox.TextTransparency = 0.200
 	TextBox.TextXAlignment = Enum.TextXAlignment.Left
 
 	TextBox:GetPropertyChangedSignal('Text'):Connect(function()
-
 		if WindowSignal.SelectedTab then
 			if TextBox.Text:byte() then
 				WindowSignal.SelectedTab.Search(TextBox.Text);
@@ -1550,16 +1631,173 @@ function NeverZen.new(config)
 		end;
 	end)
 
-	SettingsButton.Name = NeverZen:RandomString()
-	SettingsButton.Parent = Frame
-	SettingsButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	SettingsButton.BackgroundTransparency = 1.000
-	SettingsButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	SettingsButton.BorderSizePixel = 0
-	SettingsButton.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
-	SettingsButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-	SettingsButton.Image = "rbxassetid://10734950309"
-	SettingsButton.ImageTransparency = 0.200
+	-- Theme Dropdown
+	ThemeDropdown.Name = NeverZen:RandomString()
+	ThemeDropdown.Parent = Frame
+	ThemeDropdown.BackgroundColor3 = NeverZen.Theme.BackgroundColor
+	ThemeDropdown.BackgroundTransparency = 0.1
+	ThemeDropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ThemeDropdown.BorderSizePixel = 0
+	ThemeDropdown.Size = UDim2.new(0, 80, 0, 22)
+
+	local ThemeCorner = Instance.new("UICorner")
+	ThemeCorner.CornerRadius = UDim.new(0, 4)
+	ThemeCorner.Parent = ThemeDropdown
+
+	local ThemeStroke = Instance.new("UIStroke")
+	ThemeStroke.Color = NeverZen.Theme.LineColor
+	ThemeStroke.Parent = ThemeDropdown
+
+	ThemeButton.Name = NeverZen:RandomString()
+	ThemeButton.Parent = ThemeDropdown
+	ThemeButton.BackgroundTransparency = 1
+	ThemeButton.Size = UDim2.new(1, 0, 1, 0)
+	ThemeButton.Font = Enum.Font.GothamMedium
+	ThemeButton.Text = ""
+	ThemeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ThemeButton.TextSize = 12
+
+	ThemeIcon.Name = NeverZen:RandomString()
+	ThemeIcon.Parent = ThemeDropdown
+	ThemeIcon.AnchorPoint = Vector2.new(1, 0.5)
+	ThemeIcon.BackgroundTransparency = 1
+	ThemeIcon.Position = UDim2.new(1, -5, 0.5, 0)
+	ThemeIcon.Size = UDim2.new(0, 12, 0, 12)
+	ThemeIcon.Image = NeverZen:GetIcon("chevron-down")
+	ThemeIcon.ImageColor3 = NeverZen.Theme.IconColor
+	ThemeIcon.ImageTransparency = 0.3
+
+	ThemeText.Name = NeverZen:RandomString()
+	ThemeText.Parent = ThemeDropdown
+	ThemeText.BackgroundTransparency = 1
+	ThemeText.Position = UDim2.new(0, 8, 0, 0)
+	ThemeText.Size = UDim2.new(1, -25, 1, 0)
+	ThemeText.Font = Enum.Font.GothamMedium
+	ThemeText.Text = NeverZen.CurrentTheme
+	ThemeText.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ThemeText.TextSize = 11
+	ThemeText.TextTransparency = 0.2
+	ThemeText.TextXAlignment = Enum.TextXAlignment.Left
+
+	-- Theme Dropdown Menu
+	local ThemeDropdownMenu = Instance.new("Frame")
+	ThemeDropdownMenu.Name = NeverZen:RandomString()
+	ThemeDropdownMenu.Parent = Content
+	ThemeDropdownMenu.BackgroundColor3 = NeverZen.Theme.WindowBackgroundColor
+	ThemeDropdownMenu.BackgroundTransparency = 0.05
+	ThemeDropdownMenu.BorderSizePixel = 0
+	ThemeDropdownMenu.ClipsDescendants = true
+	ThemeDropdownMenu.Size = UDim2.new(0, 120, 0, 0)
+	ThemeDropdownMenu.ZIndex = 200
+	ThemeDropdownMenu.Visible = false
+
+	local ThemeMenuCorner = Instance.new("UICorner")
+	ThemeMenuCorner.CornerRadius = UDim.new(0, 6)
+	ThemeMenuCorner.Parent = ThemeDropdownMenu
+
+	local ThemeMenuStroke = Instance.new("UIStroke")
+	ThemeMenuStroke.Color = NeverZen.Theme.AccentColor
+	ThemeMenuStroke.Transparency = 0.7
+	ThemeMenuStroke.Parent = ThemeDropdownMenu
+
+	local ThemeScroll = Instance.new("ScrollingFrame")
+	ThemeScroll.Parent = ThemeDropdownMenu
+	ThemeScroll.BackgroundTransparency = 1
+	ThemeScroll.BorderSizePixel = 0
+	ThemeScroll.Size = UDim2.new(1, -4, 1, -4)
+	ThemeScroll.Position = UDim2.new(0, 2, 0, 2)
+	ThemeScroll.ScrollBarThickness = 0
+	ThemeScroll.ZIndex = 201
+
+	local ThemeListLayout = Instance.new("UIListLayout")
+	ThemeListLayout.Parent = ThemeScroll
+	ThemeListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	ThemeListLayout.Padding = UDim.new(0, 2)
+
+	local themes = {"Default", "Frost", "DarkOmens", "Neon", "Sunset", "Ocean", "Neverlose", "Fatality", "Anyx", "Hyperion", "Airflow"}
+
+	for i, themeName in ipairs(themes) do
+		local ThemeOption = Instance.new("TextButton")
+		ThemeOption.Name = themeName
+		ThemeOption.Parent = ThemeScroll
+		ThemeOption.BackgroundColor3 = NeverZen.Theme.BackgroundColor2
+		ThemeOption.BackgroundTransparency = 0.8
+		ThemeOption.BorderSizePixel = 0
+		ThemeOption.Size = UDim2.new(1, 0, 0, 25)
+		ThemeOption.Font = Enum.Font.GothamMedium
+		ThemeOption.Text = themeName
+		ThemeOption.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ThemeOption.TextSize = 11
+		ThemeOption.TextTransparency = 0.3
+		ThemeOption.ZIndex = 202
+
+		local OptionCorner = Instance.new("UICorner")
+		OptionCorner.CornerRadius = UDim.new(0, 4)
+		OptionCorner.Parent = ThemeOption
+
+		ThemeOption.MouseEnter:Connect(function()
+			TweenService:Create(ThemeOption, TweenInfo.new(0.2), {
+				BackgroundTransparency = 0.3,
+				TextTransparency = 0.1
+			}):Play()
+		end)
+
+		ThemeOption.MouseLeave:Connect(function()
+			TweenService:Create(ThemeOption, TweenInfo.new(0.2), {
+				BackgroundTransparency = 0.8,
+				TextTransparency = 0.3
+			}):Play()
+		end)
+
+		ThemeOption.MouseButton1Click:Connect(function()
+			NeverZen:SetTheme(themeName)
+			ThemeText.Text = themeName
+			
+			-- Update all theme-dependent elements
+			for _, frame in pairs(WindowSignal.FrameMemory.WindowBackgroundColor) do
+				frame.BackgroundColor3 = NeverZen.Theme.WindowBackgroundColor
+			end
+			
+			-- Close dropdown
+			TweenService:Create(ThemeDropdownMenu, TweenInfo.new(0.2), {
+				Size = UDim2.new(0, 120, 0, 0)
+			}):Play()
+			TweenService:Create(ThemeIcon, TweenInfo.new(0.2), {
+				Rotation = 0
+			}):Play()
+			task.wait(0.2)
+			ThemeDropdownMenu.Visible = false
+		end)
+	end
+
+	ThemeListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
+		ThemeScroll.CanvasSize = UDim2.fromOffset(0, ThemeListLayout.AbsoluteContentSize.Y)
+	end)
+
+	ThemeButton.MouseButton1Click:Connect(function()
+		if ThemeDropdownMenu.Visible then
+			TweenService:Create(ThemeDropdownMenu, TweenInfo.new(0.2), {
+				Size = UDim2.new(0, 120, 0, 0)
+			}):Play()
+			TweenService:Create(ThemeIcon, TweenInfo.new(0.2), {
+				Rotation = 0
+			}):Play()
+			task.wait(0.2)
+			ThemeDropdownMenu.Visible = false
+		else
+			ThemeDropdownMenu.Visible = true
+			ThemeDropdownMenu.Position = UDim2.fromOffset(
+				ThemeDropdown.AbsolutePosition.X,
+				ThemeDropdown.AbsolutePosition.Y + ThemeDropdown.AbsoluteSize.Y + 5
+			)
+			TweenService:Create(ThemeDropdownMenu, TweenInfo.new(0.2), {
+				Size = UDim2.new(0, 120, 0, math.min(200, ThemeListLayout.AbsoluteContentSize.Y + 4))
+			}):Play()
+			TweenService:Create(ThemeIcon, TweenInfo.new(0.2), {
+				Rotation = 180
+			}):Play()
+		end
+	end)
 
 	MinButton.Name = NeverZen:RandomString()
 	MinButton.Parent = Frame
@@ -1567,14 +1805,13 @@ function NeverZen.new(config)
 	MinButton.BackgroundTransparency = 1.000
 	MinButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MinButton.BorderSizePixel = 0
-	MinButton.Size = UDim2.new(1, 0, 1, 0)
-	MinButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
+	MinButton.Size = UDim2.new(0, 22, 0, 22)
 	MinButton.Image = "rbxassetid://9886659001"
 	MinButton.ImageTransparency = 0.200
 
 	Line_2.Name = NeverZen:RandomString()
 	Line_2.Parent = WindowFrame
-	Line_2.BackgroundColor3 =NeverZen.Theme.LineColor
+	Line_2.BackgroundColor3 = NeverZen.Theme.LineColor
 	Line_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Line_2.BorderSizePixel = 0
 	Line_2.Position = UDim2.new(0, 170, 0, 0)
@@ -1587,7 +1824,7 @@ function NeverZen.new(config)
 	BthFrames.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	BthFrames.BorderSizePixel = 0
 	BthFrames.Position = UDim2.new(-1, 0, 0, 45)
-	BthFrames.Size = UDim2.new(0, 170, 1, -45)
+	BthFrames.Size = UDim2.new(0, 170, 1, -70)
 
 	task.delay(0.3,function()
 		TweenService:Create(BthFrames,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
@@ -1595,73 +1832,78 @@ function NeverZen.new(config)
 		}):Play()
 	end)
 
-	InformationFrame.Name = NeverZen:RandomString()
-	InformationFrame.Parent = BthFrames
-	InformationFrame.AnchorPoint = Vector2.new(0, 1)
-	InformationFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	InformationFrame.BackgroundTransparency = 1.000
-	InformationFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	InformationFrame.BorderSizePixel = 0
-	InformationFrame.Position = UDim2.new(0, 0, 1, 55)
-	InformationFrame.Size = UDim2.new(1, 0, 0, 45)
+	-- Status Bar
+	StatusFrame.Name = NeverZen:RandomString()
+	StatusFrame.Parent = BthFrames
+	StatusFrame.AnchorPoint = Vector2.new(0, 1)
+	StatusFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	StatusFrame.BackgroundTransparency = 1.000
+	StatusFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	StatusFrame.BorderSizePixel = 0
+	StatusFrame.Position = UDim2.new(0, 0, 1, 55)
+	StatusFrame.Size = UDim2.new(1, 0, 0, 25)
 
 	task.delay(0.3,function()
-		TweenService:Create(InformationFrame,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+		TweenService:Create(StatusFrame,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
 			Position = UDim2.new(0, 0, 1, 0)
 		}):Play()
 	end)
 
-	ProfileIcon.Name = NeverZen:RandomString()
-	ProfileIcon.Parent = InformationFrame
-	ProfileIcon.Active = true
-	ProfileIcon.AnchorPoint = Vector2.new(0, 0.5)
-	ProfileIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ProfileIcon.BackgroundTransparency = 1.000
-	ProfileIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	ProfileIcon.BorderSizePixel = 0
-	ProfileIcon.Position = UDim2.new(0, 5, 1.3, 0)
-	ProfileIcon.Size = UDim2.new(0, 35, 0, 35)
-	pcall(function()
-		ProfileIcon.Image = Services.Players:GetUserThumbnailAsync(LocalPlayer.UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size150x150)
-	end)
-	task.delay(0.45,function()
-		TweenService:Create(ProfileIcon,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-			Position = UDim2.new(0, 5, 0.5, 0)
-		}):Play()
-	end)
+	StatusLine.Name = NeverZen:RandomString()
+	StatusLine.Parent = StatusFrame
+	StatusLine.BackgroundColor3 = NeverZen.Theme.LineColor
+	StatusLine.BorderSizePixel = 0
+	StatusLine.Size = UDim2.new(1, 0, 0, 1)
 
-	UICorner_3.CornerRadius = UDim.new(1, 0)
-	UICorner_3.Parent = ProfileIcon
+	FPSLabel.Name = NeverZen:RandomString()
+	FPSLabel.Parent = StatusFrame
+	FPSLabel.BackgroundTransparency = 1
+	FPSLabel.Position = UDim2.new(0, 5, 0, 3)
+	FPSLabel.Size = UDim2.new(0, 50, 1, -3)
+	FPSLabel.Font = Enum.Font.GothamMedium
+	FPSLabel.Text = "FPS: 60"
+	FPSLabel.TextColor3 = NeverZen.Theme.AccentColor
+	FPSLabel.TextSize = 10
+	FPSLabel.TextTransparency = 0.3
+	FPSLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-	UIStroke_3.Thickness = 2.000
-	UIStroke_3.Color =NeverZen.Theme.LineColor
-	UIStroke_3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke_3.Parent = ProfileIcon
+	PingLabel.Name = NeverZen:RandomString()
+	PingLabel.Parent = StatusFrame
+	PingLabel.BackgroundTransparency = 1
+	PingLabel.Position = UDim2.new(0, 60, 0, 3)
+	PingLabel.Size = UDim2.new(0, 60, 1, -3)
+	PingLabel.Font = Enum.Font.GothamMedium
+	PingLabel.Text = "Ping: 0ms"
+	PingLabel.TextColor3 = NeverZen.Theme.AccentColor
+	PingLabel.TextSize = 10
+	PingLabel.TextTransparency = 0.3
+	PingLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-	UsernameText.Name = NeverZen:RandomString()
-	UsernameText.Parent = InformationFrame
-	UsernameText.AnchorPoint = Vector2.new(0, 0.5)
-	UsernameText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	UsernameText.BackgroundTransparency = 1.000
-	UsernameText.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	UsernameText.BorderSizePixel = 0
-	UsernameText.Position = UDim2.new(0, 47, 1.4, 0)
-	UsernameText.Size = UDim2.new(1, -35, 0, -25)
-	UsernameText.Font = Enum.Font.GothamBold
-	UsernameText.Text = string.sub(LocalPlayer.DisplayName , 0, math.round(#LocalPlayer.DisplayName / 2))..string.rep("*",math.round(#LocalPlayer.DisplayName / 2));
-	UsernameText.TextColor3 = Color3.fromRGB(206, 206, 206)
-	UsernameText.TextSize = 14.000
-	UsernameText.TextXAlignment = Enum.TextXAlignment.Left
+	ThemeLabel.Name = NeverZen:RandomString()
+	ThemeLabel.Parent = StatusFrame
+	ThemeLabel.BackgroundTransparency = 1
+	ThemeLabel.AnchorPoint = Vector2.new(1, 0)
+	ThemeLabel.Position = UDim2.new(1, -5, 0, 3)
+	ThemeLabel.Size = UDim2.new(0, 80, 1, -3)
+	ThemeLabel.Font = Enum.Font.GothamMedium
+	ThemeLabel.Text = "Theme: " .. NeverZen.CurrentTheme
+	ThemeLabel.TextColor3 = NeverZen.Theme.AccentColor
+	ThemeLabel.TextSize = 10
+	ThemeLabel.TextTransparency = 0.3
+	ThemeLabel.TextXAlignment = Enum.TextXAlignment.Right
 
-	task.delay(0.5,function()
-		TweenService:Create(UsernameText,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-			Position = UDim2.new(0, 47, 0.5, 0)
-		}):Play()
-	end)
+	-- Update status labels
+	local function updateStatus()
+		local fps = NeverZen:UpdateFPS()
+		local ping = NeverZen:GetPing()
+		
+		FPSLabel.Text = "FPS: " .. fps
+		PingLabel.Text = "Ping: " .. ping .. "ms"
+		ThemeLabel.Text = "Theme: " .. NeverZen.CurrentTheme
+	end
 
-	UIGradient.Rotation = 90
-	UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.20, 0.24), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(0.80, 0.24), NumberSequenceKeypoint.new(1.00, 1.00)}
-	UIGradient.Parent = UsernameText
+	-- Start status update loop
+	RunService.Heartbeat:Connect(updateStatus)
 
 	TabButtons.Name = NeverZen:RandomString()
 	TabButtons.Parent = BthFrames
@@ -1670,7 +1912,7 @@ function NeverZen.new(config)
 	TabButtons.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	TabButtons.BorderSizePixel = 0
 	TabButtons.ClipsDescendants = true
-	TabButtons.Size = UDim2.new(0, 170, 1.13661206, -100)
+	TabButtons.Size = UDim2.new(0, 170, 1, -25)
 
 	TBSFrame.Name = NeverZen:RandomString()
 	TBSFrame.Parent = TabButtons
@@ -1706,10 +1948,10 @@ function NeverZen.new(config)
 	Line_3.Name = NeverZen:RandomString()
 	Line_3.Parent = BthFrames
 	Line_3.AnchorPoint = Vector2.new(0, 1)
-	Line_3.BackgroundColor3 =NeverZen.Theme.LineColor
+	Line_3.BackgroundColor3 = NeverZen.Theme.LineColor
 	Line_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Line_3.BorderSizePixel = 0
-	Line_3.Position = UDim2.new(0, 0, 1, -45)
+	Line_3.Position = UDim2.new(0, 0, 1, -25)
 	Line_3.Size = UDim2.new(0, 170, 0, 1)
 
 	TabWin.Name = NeverZen:RandomString()
@@ -1729,7 +1971,6 @@ function NeverZen.new(config)
 	end);
 
 	function WindowSignal:StatusBar()
-
 		local Statusbar = Instance.new("Frame")
 		local UIListLayout = Instance.new("UIListLayout")
 
@@ -1879,7 +2120,6 @@ function NeverZen.new(config)
 		TabName.TextWrapped = true
 		TabName.TextXAlignment = Enum.TextXAlignment.Left
 
-
 		local TabFrame = Instance.new("Frame")
 		local LeftFrame = Instance.new("ScrollingFrame")
 		local UIListLayout = Instance.new("UIListLayout")
@@ -1920,7 +2160,6 @@ function NeverZen.new(config)
 		UIListLayoutAF.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		UIListLayoutAF.SortOrder = Enum.SortOrder.LayoutOrder
 		UIListLayoutAF.Padding = UDim.new(0, 2)
-
 
 		LeftFrame.Name = NeverZen:RandomString()
 		LeftFrame.Parent = CTFrame
@@ -2088,7 +2327,6 @@ function NeverZen.new(config)
 			target = TabButton,
 			Search = searchItem,
 		};
-
 
 		task.delay(#WindowSignal.Tabs / 8,function()
 			TweenService:Create(TabButton,TweenInfo.new(0.35),{
