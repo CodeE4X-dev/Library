@@ -1632,40 +1632,42 @@ function NeverZen.new(config)
 	end)
 
 	-- Theme Dropdown
-	ThemeDropdown.Name = NeverZen:RandomString()
-	ThemeDropdown.Parent = Frame
-	ThemeDropdown.BackgroundColor3 = NeverZen.Theme.BackgroundColor
-	ThemeDropdown.BackgroundTransparency = 0.1
-	ThemeDropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	ThemeDropdown.BorderSizePixel = 0
-	ThemeDropdown.Size = UDim2.new(0, 80, 0, 22)
+-- Theme Dropdown (replaces settings/cog icon)
+ThemeDropdown.Name = NeverZen:RandomString()
+ThemeDropdown.Parent = Frame
+ThemeDropdown.BackgroundColor3 = NeverZen.Theme.BackgroundColor
+ThemeDropdown.BackgroundTransparency = 0.1
+ThemeDropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ThemeDropdown.BorderSizePixel = 0
+ThemeDropdown.Size = UDim2.new(0, 80, 0, 22)
 
-	local ThemeCorner = Instance.new("UICorner")
-	ThemeCorner.CornerRadius = UDim.new(0, 4)
-	ThemeCorner.Parent = ThemeDropdown
+local ThemeCorner = Instance.new("UICorner")
+ThemeCorner.CornerRadius = UDim.new(0, 4)
+ThemeCorner.Parent = ThemeDropdown
 
-	local ThemeStroke = Instance.new("UIStroke")
-	ThemeStroke.Color = NeverZen.Theme.LineColor
-	ThemeStroke.Parent = ThemeDropdown
+local ThemeStroke = Instance.new("UIStroke")
+ThemeStroke.Color = NeverZen.Theme.LineColor
+ThemeStroke.Parent = ThemeDropdown
 
-	ThemeButton.Name = NeverZen:RandomString()
-	ThemeButton.Parent = ThemeDropdown
-	ThemeButton.BackgroundTransparency = 1
-	ThemeButton.Size = UDim2.new(1, 0, 1, 0)
-	ThemeButton.Font = Enum.Font.GothamMedium
-	ThemeButton.Text = ""
-	ThemeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-	ThemeButton.TextSize = 12
+ThemeButton.Name = NeverZen:RandomString()
+ThemeButton.Parent = ThemeDropdown
+ThemeButton.BackgroundTransparency = 1
+ThemeButton.Size = UDim2.new(1, 0, 1, 0)
+ThemeButton.Font = Enum.Font.GothamMedium
+ThemeButton.Text = ""
+ThemeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ThemeButton.TextSize = 12
 
-	ThemeIcon.Name = NeverZen:RandomString()
-	ThemeIcon.Parent = ThemeDropdown
-	ThemeIcon.AnchorPoint = Vector2.new(1, 0.5)
-	ThemeIcon.BackgroundTransparency = 1
-	ThemeIcon.Position = UDim2.new(1, -5, 0.5, 0)
-	ThemeIcon.Size = UDim2.new(0, 12, 0, 12)
-	ThemeIcon.Image = NeverZen:GetIcon("chevron-down")
-	ThemeIcon.ImageColor3 = NeverZen.Theme.IconColor
-	ThemeIcon.ImageTransparency = 0.3
+-- Replace cog icon with dropdown arrow
+ThemeIcon.Name = NeverZen:RandomString()
+ThemeIcon.Parent = ThemeDropdown
+ThemeIcon.AnchorPoint = Vector2.new(1, 0.5)
+ThemeIcon.BackgroundTransparency = 1
+ThemeIcon.Position = UDim2.new(1, -5, 0.5, 0)
+ThemeIcon.Size = UDim2.new(0, 12, 0, 12)
+ThemeIcon.Image = NeverZen:GetIcon("chevron-down") -- Changed from cog to dropdown arrow
+ThemeIcon.ImageColor3 = NeverZen.Theme.IconColor
+ThemeIcon.ImageTransparency = 0.3
 
 	ThemeText.Name = NeverZen:RandomString()
 	ThemeText.Parent = ThemeDropdown
@@ -1798,6 +1800,29 @@ function NeverZen.new(config)
 			}):Play()
 		end
 	end)
+	
+	-- Function to update all UI elements when theme changes
+local function updateThemeElements()
+	-- Update window elements
+	WindowFrame.BackgroundColor3 = NeverZen.Theme.WindowBackgroundColor
+	WindowGradient.Color = ColorSequence.new(NeverZen.Theme.WindowGradient)
+	
+	-- Update status frame elements
+	StatusFrame.BackgroundColor3 = NeverZen.Theme.WindowBackgroundColor
+	StatusLine.BackgroundColor3 = NeverZen.Theme.LineColor
+	FPSLabel.TextColor3 = NeverZen.Theme.AccentColor
+	PingLabel.TextColor3 = NeverZen.Theme.AccentColor
+	ExecutorLabel.TextColor3 = NeverZen.Theme.AccentColor
+	
+	-- Update theme dropdown
+	ThemeDropdown.BackgroundColor3 = NeverZen.Theme.BackgroundColor
+	ThemeStroke.Color = NeverZen.Theme.LineColor
+	ThemeIcon.ImageColor3 = NeverZen.Theme.IconColor
+	
+	-- Update other elements as needed
+	UIStroke.Color = NeverZen.Theme.AccentColor
+	HeaderText.TextColor3 = NeverZen.Theme.HeadText
+end
 
 	MinButton.Name = NeverZen:RandomString()
 	MinButton.Parent = Frame
@@ -1855,56 +1880,59 @@ function NeverZen.new(config)
 	StatusLine.BorderSizePixel = 0
 	StatusLine.Size = UDim2.new(1, 0, 0, 1)
 
-	FPSLabel.Name = NeverZen:RandomString()
-	FPSLabel.Parent = StatusFrame
-	FPSLabel.BackgroundTransparency = 1
-	FPSLabel.Position = UDim2.new(0, 5, 0, 3)
-	FPSLabel.Size = UDim2.new(0, 50, 1, -3)
-	FPSLabel.Font = Enum.Font.GothamMedium
-	FPSLabel.Text = "FPS: 60"
-	FPSLabel.TextColor3 = NeverZen.Theme.AccentColor
-	FPSLabel.TextSize = 10
-	FPSLabel.TextTransparency = 0.3
-	FPSLabel.TextXAlignment = Enum.TextXAlignment.Left
+FPSLabel.Name = NeverZen:RandomString()
+FPSLabel.Parent = StatusFrame
+FPSLabel.BackgroundTransparency = 1
+FPSLabel.Position = UDim2.new(0, 5, 0, 3)
+FPSLabel.Size = UDim2.new(0, 50, 1, -3)
+FPSLabel.Font = Enum.Font.GothamMedium
+FPSLabel.Text = "FPS: 60"
+FPSLabel.TextColor3 = NeverZen.Theme.AccentColor
+FPSLabel.TextSize = 10
+FPSLabel.TextTransparency = 0.3
+FPSLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-	PingLabel.Name = NeverZen:RandomString()
-	PingLabel.Parent = StatusFrame
-	PingLabel.BackgroundTransparency = 1
-	PingLabel.Position = UDim2.new(0, 60, 0, 3)
-	PingLabel.Size = UDim2.new(0, 60, 1, -3)
-	PingLabel.Font = Enum.Font.GothamMedium
-	PingLabel.Text = "Ping: 0ms"
-	PingLabel.TextColor3 = NeverZen.Theme.AccentColor
-	PingLabel.TextSize = 10
-	PingLabel.TextTransparency = 0.3
-	PingLabel.TextXAlignment = Enum.TextXAlignment.Left
+PingLabel.Name = NeverZen:RandomString()
+PingLabel.Parent = StatusFrame
+PingLabel.BackgroundTransparency = 1
+PingLabel.Position = UDim2.new(0, 60, 0, 3)
+PingLabel.Size = UDim2.new(0, 60, 1, -3)
+PingLabel.Font = Enum.Font.GothamMedium
+PingLabel.Text = "Ping: 0ms"
+PingLabel.TextColor3 = NeverZen.Theme.AccentColor
+PingLabel.TextSize = 10
+PingLabel.TextTransparency = 0.3
+PingLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-	ThemeLabel.Name = NeverZen:RandomString()
-	ThemeLabel.Parent = StatusFrame
-	ThemeLabel.BackgroundTransparency = 1
-	ThemeLabel.AnchorPoint = Vector2.new(1, 0)
-	ThemeLabel.Position = UDim2.new(1, -5, 0, 3)
-	ThemeLabel.Size = UDim2.new(0, 80, 1, -3)
-	ThemeLabel.Font = Enum.Font.GothamMedium
-	ThemeLabel.Text = "Theme: " .. NeverZen.CurrentTheme
-	ThemeLabel.TextColor3 = NeverZen.Theme.AccentColor
-	ThemeLabel.TextSize = 10
-	ThemeLabel.TextTransparency = 0.3
-	ThemeLabel.TextXAlignment = Enum.TextXAlignment.Right
+-- Add Executor label (replaces theme label)
+local ExecutorLabel = Instance.new("TextLabel")
+ExecutorLabel.Name = NeverZen:RandomString()
+ExecutorLabel.Parent = StatusFrame
+ExecutorLabel.BackgroundTransparency = 1
+ExecutorLabel.AnchorPoint = Vector2.new(1, 0)
+ExecutorLabel.Position = UDim2.new(1, -5, 0, 3)
+ExecutorLabel.Size = UDim2.new(0, 80, 1, -3)
+ExecutorLabel.Font = Enum.Font.GothamMedium
+ExecutorLabel.Text = "Executor: Unknown"
+ExecutorLabel.TextColor3 = NeverZen.Theme.AccentColor
+ExecutorLabel.TextSize = 10
+ExecutorLabel.TextTransparency = 0.3
+ExecutorLabel.TextXAlignment = Enum.TextXAlignment.Right
 
-	-- Update status labels
 local function updateStatus()
 	local fps = NeverZen:UpdateFPS()
 	local ping = NeverZen:GetPing()
 
-	local success, executor = pcall(identifyexecutor)
+	local success, executor = pcall(function()
+		return identifyexecutor and identifyexecutor() or "Unknown"
+	end)
 	if not success or not executor or executor == "" then
-		executor = "ts executor is bad..."
+		executor = "Unknown"
 	end
 
 	FPSLabel.Text = "FPS: " .. fps
 	PingLabel.Text = "Ping: " .. ping .. "ms"
-	ThemeLabel.Text = "Executor: " .. executor
+	ExecutorLabel.Text = "Executor: " .. executor
 end
 
 
@@ -2106,6 +2134,8 @@ end
 		TabIcon.Image = NeverZen:GetIcon(config.Icon);
 		TabIcon.ImageTransparency = 1
 		TabIcon.ImageColor3 = NeverZen.Theme.IconColor
+
+		table.insert(WindowSignal.FrameMemory.IconColor, TabIcon)
 
 		TabName.Name = NeverZen:RandomString()
 		TabName.Parent = TabButton
@@ -3461,71 +3491,72 @@ end
 		return TabSignal;
 	end;
 
-	local llk;
-	local ToggleWin = function(v)
-		if llk then
-			llk.Visible = (v and true) or false;	
-		end;
-
-		if not v then
-			TweenService:Create(WindowFrame,TweenInfo.new(0.7,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Size = UDim2.fromOffset(210,44)
-			}):Play()
-
-			TweenService:Create(BthFrames,TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Position = UDim2.new(-1, 0, 0, 45)
-			}):Play()
-
-			TweenService:Create(InformationFrame,TweenInfo.new(0.8,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Position = UDim2.new(0, 0, 1, 55)
-			}):Play()
-
-			TweenService:Create(TabWin,TweenInfo.new(0.45,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Position = UDim2.new(1, 170, 0, 45)
-			}):Play()
-
-			TweenService:Create(SearchFrame,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Size = UDim2.new(0, 0, 0, 22)
-			}):Play()
-
-			TweenService:Create(UIStroke_2,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Transparency = 1
-			}):Play()
-
-			TweenService:Create(SettingsButton,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Size = UDim2.new(0, 0, 0, 0)
-			}):Play()
-
-		else
-			TweenService:Create(SettingsButton,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
-			}):Play()
-
-			TweenService:Create(UIStroke_2,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Transparency = 0
-			}):Play()
-
-			TweenService:Create(SearchFrame,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Size = UDim2.new(0, 140, 0, 22)
-			}):Play()
-
-			TweenService:Create(InformationFrame,TweenInfo.new(0.8,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Position = UDim2.new(0, 0, 1, 0)
-			}):Play()
-
-			TweenService:Create(BthFrames,TweenInfo.new(0.7,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Position = UDim2.new(0, 0, 0, 45)
-			}):Play()
-
-			TweenService:Create(TabWin,TweenInfo.new(0.8,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Position = UDim2.new(0, 170, 0, 45)
-			}):Play()
-
-			TweenService:Create(WindowFrame,TweenInfo.new(0.6,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
-				Size = WindowSignal.Config.Scale
-			}):Play()
-		end;
+local ToggleWin = function(v)
+	if llk then
+		llk.Visible = (v and true) or false;	
 	end;
+
+	if not v then
+		-- Minimize animation - fixed
+		TweenService:Create(WindowFrame,TweenInfo.new(0.7,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Size = UDim2.fromOffset(210,44)
+		}):Play()
+
+		TweenService:Create(BthFrames,TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Position = UDim2.new(-1, 0, 0, 45)
+		}):Play()
+
+		TweenService:Create(StatusFrame,TweenInfo.new(0.8,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Position = UDim2.new(0, 0, 1, 55)
+		}):Play()
+
+		TweenService:Create(TabWin,TweenInfo.new(0.45,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Position = UDim2.new(1, 170, 0, 45)
+		}):Play()
+
+		TweenService:Create(SearchFrame,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Size = UDim2.new(0, 0, 0, 22)
+		}):Play()
+
+		TweenService:Create(UIStroke_2,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Transparency = 1
+		}):Play()
+
+		TweenService:Create(ThemeDropdown,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Size = UDim2.new(0, 0, 0, 0)
+		}):Play()
+
+	else
+		-- Restore animation - fixed
+		TweenService:Create(ThemeDropdown,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Size = UDim2.new(0, 80, 0, 22)
+		}):Play()
+
+		TweenService:Create(UIStroke_2,TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Transparency = 0
+		}):Play()
+
+		TweenService:Create(SearchFrame,TweenInfo.new(1,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Size = UDim2.new(0, 140, 0, 22)
+		}):Play()
+
+		TweenService:Create(StatusFrame,TweenInfo.new(0.8,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Position = UDim2.new(0, 0, 1, 0)
+		}):Play()
+
+		TweenService:Create(BthFrames,TweenInfo.new(0.7,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Position = UDim2.new(0, 0, 0, 45)
+		}):Play()
+
+		TweenService:Create(TabWin,TweenInfo.new(0.8,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Position = UDim2.new(0, 170, 0, 45)
+		}):Play()
+
+		TweenService:Create(WindowFrame,TweenInfo.new(0.6,Enum.EasingStyle.Quint,Enum.EasingDirection.InOut),{
+			Size = WindowSignal.Config.Scale
+		}):Play()
+	end;
+end;
 
 	MinButton.MouseButton1Click:Connect(function()
 		WindowSignal.Toggle = not WindowSignal.Toggle;
