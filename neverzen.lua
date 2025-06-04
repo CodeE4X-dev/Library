@@ -1214,71 +1214,114 @@ function NeverZen:SetTheme(name)
 			IconColor = Color3.fromRGB(120, 180, 255),
 			AccentColor = Color3.fromRGB(50, 150, 255),
 		}
-    	elseif name == "Neverlose" then
-		NeverZen.Theme = {
-			WindowBackgroundColor = Color3.fromRGB(6,8,5),
-			HeadText = Color3.fromRGB(233,239,237),
-			LineColor = Color3.fromRGB(18,20,19),
-			BackgroundColor = Color3.fromRGB(6,8,5),
-			SectionColor = Color3.fromRGB(9,11,10),
-			Hightlight = Color3.fromRGB(0,169,239),
-			StrokeColor = Color3.fromRGB(18,20,19),
-			StrokeColor2 = Color3.fromRGB(77,90,92),
-			BackgroundColor2 = Color3.fromRGB(10,14,13),
-			IconColor = Color3.fromRGB(5,164,233),
-		};
-	elseif name == "Fatality" then
-		NeverZen.Theme = {
-			WindowBackgroundColor = Color3.fromRGB(8, 7, 20),
-			HeadText = Color3.fromRGB(245,245,245),
-			LineColor = Color3.fromRGB(54,47,86),
-			BackgroundColor = Color3.fromRGB(11,10,26),
-			SectionColor = Color3.fromRGB(17, 14, 36),
-			Hightlight = Color3.fromRGB(198,9,85),
-			StrokeColor = Color3.fromRGB(54,47,86),
-			StrokeColor2 = Color3.fromRGB(54,47,86),
-			BackgroundColor2 = Color3.fromRGB(21,18,45),
-			IconColor = Color3.fromRGB(233,5,89),
-		};
-	elseif name == "Anyx" then
-		NeverZen.Theme = {
-			WindowBackgroundColor = Color3.fromRGB(17, 17, 17),
-			HeadText = Color3.fromRGB(245,245,245),
-			LineColor = Color3.fromRGB(42, 42, 42),
-			BackgroundColor = Color3.fromRGB(20, 20, 20),
-			SectionColor = Color3.fromRGB(20,20,20),
-			Hightlight = Color3.fromRGB(81,195,206),
-			StrokeColor = Color3.fromRGB(29,35,38),
-			StrokeColor2 = Color3.fromRGB(29,35,38),
-			BackgroundColor2 = Color3.fromRGB(31,31,31),
-			IconColor = Color3.fromRGB(128,174,172),
-		};
-	elseif name == "Hyperion" then
-		NeverZen.Theme = {
-			WindowBackgroundColor = Color3.fromRGB(23, 26, 29),
-			HeadText = Color3.fromRGB(211,34,35),
-			LineColor = Color3.fromRGB(52,55,60),
-			BackgroundColor = Color3.fromRGB(38, 43, 49),
-			SectionColor = Color3.fromRGB(38,42,48),
-			Hightlight = Color3.fromRGB(197,29,29),
-			StrokeColor = Color3.fromRGB(48,51,56),
-			StrokeColor2 = Color3.fromRGB(54, 58, 63),
-			BackgroundColor2 = Color3.fromRGB(43,48,55),
-			IconColor = Color3.fromRGB(220,221,222),
-		};
-	elseif name == "Airflow" then
-		NeverZen.Theme = {
-			WindowBackgroundColor = Color3.fromRGB(41,40,38),
-			HeadText = Color3.fromRGB(229,229,228),
-			LineColor = Color3.fromRGB(49,49,48),
-			BackgroundColor = Color3.fromRGB(69,66,63),
-			SectionColor = Color3.fromRGB(42,41,40),
-			Hightlight = Color3.fromRGB(143,107,190),
-			StrokeColor = Color3.fromRGB(49,49,48),
-			StrokeColor2 = Color3.fromRGB(36, 36, 35),
-			BackgroundColor2 = Color3.fromRGB(46,46,44),
-			IconColor = Color3.fromRGB(143,107,190),
-		};
+elseif name == "Midnight" then
+	NeverZen.Theme = {
+		WindowBackgroundColor = Color3.fromRGB(5, 5, 15),
+		WindowGradient = {Color3.fromRGB(10, 10, 25), Color3.fromRGB(2, 2, 10)},
+		HeadText = Color3.fromRGB(180, 180, 255),
+		LineColor = Color3.fromRGB(30, 30, 70),
+		BackgroundColor = Color3.fromRGB(20, 20, 40),
+		BackgroundGradient = {Color3.fromRGB(25, 25, 50), Color3.fromRGB(15, 15, 30)},
+		SectionColor = Color3.fromRGB(12, 12, 25),
+		SectionGradient = {Color3.fromRGB(18, 18, 35), Color3.fromRGB(8, 8, 20)},
+		Hightlight = Color3.fromRGB(120, 120, 255),
+		HighlightGradient = {Color3.fromRGB(140, 140, 255), Color3.fromRGB(100, 100, 220)},
+		StrokeColor = Color3.fromRGB(40, 40, 80),
+		StrokeColor2 = Color3.fromRGB(100, 100, 180),
+		BackgroundColor2 = Color3.fromRGB(15, 15, 30),
+		IconColor = Color3.fromRGB(150, 150, 255),
+		AccentColor = Color3.fromRGB(120, 120, 255),
+	}
+elseif name == "Emerald" then
+	NeverZen.Theme = {
+		WindowBackgroundColor = Color3.fromRGB(8, 15, 12),
+		WindowGradient = {Color3.fromRGB(12, 20, 18), Color3.fromRGB(5, 10, 8)},
+		HeadText = Color3.fromRGB(180, 255, 220),
+		LineColor = Color3.fromRGB(25, 60, 45),
+		BackgroundColor = Color3.fromRGB(15, 35, 25),
+		BackgroundGradient = {Color3.fromRGB(20, 40, 30), Color3.fromRGB(10, 30, 20)},
+		SectionColor = Color3.fromRGB(10, 20, 15),
+		SectionGradient = {Color3.fromRGB(15, 25, 20), Color3.fromRGB(8, 15, 12)},
+		Hightlight = Color3.fromRGB(50, 255, 150),
+		HighlightGradient = {Color3.fromRGB(80, 255, 180), Color3.fromRGB(30, 220, 120)},
+		StrokeColor = Color3.fromRGB(30, 70, 50),
+		StrokeColor2 = Color3.fromRGB(100, 200, 150),
+		BackgroundColor2 = Color3.fromRGB(12, 20, 18),
+		IconColor = Color3.fromRGB(120, 255, 180),
+		AccentColor = Color3.fromRGB(50, 255, 150),
+	}
+elseif name == "Crimson" then
+	NeverZen.Theme = {
+		WindowBackgroundColor = Color3.fromRGB(15, 5, 5),
+		WindowGradient = {Color3.fromRGB(25, 10, 10), Color3.fromRGB(10, 2, 2)},
+		HeadText = Color3.fromRGB(255, 180, 180),
+		LineColor = Color3.fromRGB(70, 25, 25),
+		BackgroundColor = Color3.fromRGB(40, 15, 15),
+		BackgroundGradient = {Color3.fromRGB(50, 20, 20), Color3.fromRGB(30, 10, 10)},
+		SectionColor = Color3.fromRGB(25, 8, 8),
+		SectionGradient = {Color3.fromRGB(35, 15, 15), Color3.fromRGB(20, 5, 5)},
+		Hightlight = Color3.fromRGB(255, 80, 80),
+		HighlightGradient = {Color3.fromRGB(255, 120, 120), Color3.fromRGB(220, 50, 50)},
+		StrokeColor = Color3.fromRGB(80, 30, 30),
+		StrokeColor2 = Color3.fromRGB(200, 100, 100),
+		BackgroundColor2 = Color3.fromRGB(20, 8, 8),
+		IconColor = Color3.fromRGB(255, 150, 150),
+		AccentColor = Color3.fromRGB(255, 80, 80),
+	}
+elseif name == "Cyberpunk" then
+	NeverZen.Theme = {
+		WindowBackgroundColor = Color3.fromRGB(10, 5, 20),
+		WindowGradient = {Color3.fromRGB(15, 8, 30), Color3.fromRGB(5, 2, 15)},
+		HeadText = Color3.fromRGB(255, 100, 255),
+		LineColor = Color3.fromRGB(60, 20, 80),
+		BackgroundColor = Color3.fromRGB(25, 10, 40),
+		BackgroundGradient = {Color3.fromRGB(35, 15, 50), Color3.fromRGB(20, 5, 30)},
+		SectionColor = Color3.fromRGB(15, 5, 25),
+		SectionGradient = {Color3.fromRGB(25, 10, 35), Color3.fromRGB(10, 2, 20)},
+		Hightlight = Color3.fromRGB(255, 0, 200),
+		HighlightGradient = {Color3.fromRGB(255, 50, 220), Color3.fromRGB(220, 0, 180)},
+		StrokeColor = Color3.fromRGB(80, 30, 100),
+		StrokeColor2 = Color3.fromRGB(180, 80, 200),
+		BackgroundColor2 = Color3.fromRGB(20, 8, 30),
+		IconColor = Color3.fromRGB(255, 120, 255),
+		AccentColor = Color3.fromRGB(255, 0, 200),
+	}
+elseif name == "Golden" then
+	NeverZen.Theme = {
+		WindowBackgroundColor = Color3.fromRGB(20, 15, 5),
+		WindowGradient = {Color3.fromRGB(30, 22, 8), Color3.fromRGB(15, 10, 2)},
+		HeadText = Color3.fromRGB(255, 220, 150),
+		LineColor = Color3.fromRGB(80, 60, 20),
+		BackgroundColor = Color3.fromRGB(40, 30, 10),
+		BackgroundGradient = {Color3.fromRGB(50, 40, 15), Color3.fromRGB(30, 20, 5)},
+		SectionColor = Color3.fromRGB(25, 18, 5),
+		SectionGradient = {Color3.fromRGB(35, 25, 10), Color3.fromRGB(20, 15, 2)},
+		Hightlight = Color3.fromRGB(255, 200, 50),
+		HighlightGradient = {Color3.fromRGB(255, 220, 80), Color3.fromRGB(220, 180, 30)},
+		StrokeColor = Color3.fromRGB(100, 80, 30),
+		StrokeColor2 = Color3.fromRGB(200, 170, 80),
+		BackgroundColor2 = Color3.fromRGB(25, 20, 8),
+		IconColor = Color3.fromRGB(255, 230, 150),
+		AccentColor = Color3.fromRGB(255, 200, 50),
+	}
+elseif name == "Matrix" then
+	NeverZen.Theme = {
+		WindowBackgroundColor = Color3.fromRGB(5, 10, 5),
+		WindowGradient = {Color3.fromRGB(8, 15, 8), Color3.fromRGB(2, 8, 2)},
+		HeadText = Color3.fromRGB(50, 255, 50),
+		LineColor = Color3.fromRGB(20, 60, 20),
+		BackgroundColor = Color3.fromRGB(10, 25, 10),
+		BackgroundGradient = {Color3.fromRGB(15, 30, 15), Color3.fromRGB(5, 20, 5)},
+		SectionColor = Color3.fromRGB(8, 18, 8),
+		SectionGradient = {Color3.fromRGB(12, 22, 12), Color3.fromRGB(5, 15, 5)},
+		Hightlight = Color3.fromRGB(0, 255, 0),
+		HighlightGradient = {Color3.fromRGB(50, 255, 50), Color3.fromRGB(0, 200, 0)},
+		StrokeColor = Color3.fromRGB(30, 70, 30),
+		StrokeColor2 = Color3.fromRGB(80, 180, 80),
+		BackgroundColor2 = Color3.fromRGB(12, 20, 12),
+		IconColor = Color3.fromRGB(100, 255, 100),
+		AccentColor = Color3.fromRGB(0, 255, 0),
+	}
 	end;
 end;
 
