@@ -1,4 +1,4 @@
--- v=21
+-- v=24
 local a = (cloneref or clonereference or function(a)
     return a
 end)
@@ -959,6 +959,7 @@ function IsValidCustomIcon(D)
 end
 
 local D, E = false, nil
+local _canIcons = getcustomasset and writefile and isfile
 task.spawn(function()
     local ok, mod = pcall(function()
         return ((loadstring(game:HttpGet'https://raw.githubusercontent.com/deividcomsono/lucide-roblox-direct/refs/heads/main/source.lua')))()
@@ -971,9 +972,11 @@ task.spawn(function()
         end
     end
 end)
-local _iconDeadline = os.clock() + 3
-while not D and os.clock() < _iconDeadline do
-    task.wait()
+if _canIcons then
+    local _iconDeadline = os.clock() + 2
+    while not D and os.clock() < _iconDeadline do
+        task.wait()
+    end
 end
 
 function x.GetIcon(G, H)
